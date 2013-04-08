@@ -4,8 +4,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import net.minecraft.server.Packet20NamedEntitySpawn;
-import net.minecraft.server.Packet29DestroyEntity;
+import net.minecraft.server.v1_5_R2.Packet20NamedEntitySpawn;
+import net.minecraft.server.v1_5_R2.Packet29DestroyEntity;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -111,8 +111,8 @@ public class OBNPC_Spawner implements Runnable
 	                    for (Player p2 : Bukkit.getServer().getOnlinePlayers())
 	                    {
 	                    	if (!t.equalsIgnoreCase("wolf"))
-	                    		((CraftPlayer) p2).getHandle().netServerHandler.sendPacket(p29);
-	                        ((CraftPlayer) p2).getHandle().netServerHandler.sendPacket(p20);
+	                    		((Player) p2).getHandle().netServerHandler.sendPacket(p29);
+	                        ((Player) p2).getHandle().netServerHandler.sendPacket(p20);
 	                    }
 	                    
 						this.npc_dict.put(loc, actual_wolf);

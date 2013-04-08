@@ -4,12 +4,12 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGManaBar implements Runnable
+public class OBManaBar implements Runnable
 {
 
 	public Player player;
-    public Legends plugin;
-    public LGManaBar(Player tochange, Legends p)
+    public Oblivion plugin;
+    public OBManaBar(Player tochange, Oblivion p)
     {
         this.player = tochange;
         this.plugin = p;

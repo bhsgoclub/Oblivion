@@ -3,6 +3,7 @@ package bhsgoclub.Oblivion;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
@@ -17,8 +18,11 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import net.minecraft.server.v1_5_R2.DataWatcher;
+import net.minecraft.server.v1_5_R2.EntityLiving;
 import net.minecraft.server.v1_5_R2.EntityPlayer;
 import net.minecraft.server.v1_5_R2.InventoryLargeChest;
 import net.minecraft.server.v1_5_R2.MathHelper;
@@ -81,13 +85,13 @@ import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wolf;
 import org.bukkit.entity.Zombie;
 import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.PermissionAttachment;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.configuration.file.FileConfiguration
 
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.modules.limits.LimitsModule;
@@ -126,8 +130,8 @@ public class Oblivion extends JavaPlugin {
 		}
 	}
 
-	public void doEffect(EntityPlayer player, int id, int time, int strength) {
-		player.addEffect(new MobEffect(id, time * 20, strength));
+	public void doEffect(EventHandler eplayer, int id, float f, int strength) {
+		((EntityLiving) eplayer).addEffect(new MobEffect(id, (int) (f * 20), strength));
 		
 		
 	}
@@ -299,6 +303,46 @@ public class Oblivion extends JavaPlugin {
 	
 	
 	
+	
+	public void loadConfig()
+	{
+    	Logger log = getServer().getLogger();
+		/**
+		 * Check to see if there's a config.
+		 * If not then create a new one.
+		 */
+		File config = new File(getDataFolder() + "/playerdata.yml");
+		if(!config.exists())
+		{
+			try{
+				getDataFolder().mkdir();
+				config.createNewFile();
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "[Oblivion] Couldn't create config");
+			}
+
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(getDataFolder() + File.separator + "playerdata.yml"));
+				InputStream is = getResource("playerdata.yml");
+				byte[] linebuffer = new byte[4096];
+				int lineLength = 0;
+				while((lineLength = is.read(linebuffer)) > 0)
+				{
+					fos.write(linebuffer, 0, lineLength);
+				}
+				fos.close();
+
+				log.log(Level.INFO, "[Oblivion] Wrote new config");
+
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "[Oblivion] Couldn't write config: " + e);
+			}	
+		}
+		else
+		{
+			log.log(Level.INFO, "[Oblivion] Config found.");
+		}
+	}
 	
 	
 	

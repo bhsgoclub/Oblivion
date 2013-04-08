@@ -2,8 +2,8 @@ package bhsgoclub.Oblivion;
 
 import java.util.List;
 
-import net.minecraft.server.DamageSource;
-import net.minecraft.server.World;
+import net.minecraft.server.v1_5_R2.DamageSource;
+import net.minecraft.server.v1_5_R2.World;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -12,7 +12,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.World;
+//import org.bukkit.World;
 import org.bukkit.entity.Arrow;
 import org.bukkit.entity.CaveSpider;
 import org.bukkit.entity.Giant;

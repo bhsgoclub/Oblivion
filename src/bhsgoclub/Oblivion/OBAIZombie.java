@@ -6,10 +6,10 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftCreeper;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.craftbukkit.entity.CraftSpider;
-import org.bukkit.craftbukkit.entity.CraftZombie;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Zombie;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -85,7 +85,7 @@ public class OBAIZombie implements Runnable
     			
     			
     		}
-    		CraftPlayer p = (CraftPlayer)player;
+    		Player p = (Player)player;
     		//p.set
     		
     		

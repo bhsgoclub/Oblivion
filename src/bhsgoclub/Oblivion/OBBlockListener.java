@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import net.minecraft.server.BlockButton;
+import net.minecraft.server.v1_5_R2.BlockButtonAbstract;
 
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockFace;
@@ -30,11 +30,11 @@ import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.block.*;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
+import org.bukkit.entity.Player;
 
 import org.bukkit.material.Button;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.config.Configuration;
+import org.bukkit.configuration.Configuration;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;

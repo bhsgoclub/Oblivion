@@ -6,10 +6,10 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftCreeper;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.craftbukkit.entity.CraftSpider;
-import org.bukkit.craftbukkit.entity.CraftZombie;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Zombie;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -23,15 +23,15 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.scheduler.*;
 import org.bukkit.util.Vector;
 
-public class LGGuard implements Runnable
+public class OBGuard implements Runnable
 {
 
 	public Player player;
-    public Legends plugin;
+    public Oblivion plugin;
     public Monster ai_player;
     public int state;
     
-    public LGGuard(Player tochange, Legends p, Monster ai)
+    public OBGuard(Player tochange, Oblivion p, Monster ai)
     {
         this.player = tochange;
         this.plugin = p;

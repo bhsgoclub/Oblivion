@@ -22,10 +22,10 @@ public class OBAutoSave implements Runnable
     public void run()
     {
         //do your stuff here
-    	this.plugin.getCon().save();
-    	this.plugin.getSettle().save();
-    	this.plugin.getTelepad().save();
-    	this.plugin.getXrayers().save();
+    	((World) this.plugin.getCon()).save();
+    	((World) this.plugin.getSettle()).save();
+    	((World) this.plugin.getTelepad()).save();
+    	((World) this.plugin.getXrayers()).save();
     	this.plugin.save();
     	
     	Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+"Saving worlds... Please wait");

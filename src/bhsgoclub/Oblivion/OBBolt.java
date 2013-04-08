@@ -10,7 +10,7 @@ public class OBBolt implements Runnable
     public Oblivion plugin;
     public Location loc;
     public Player player;
-    public OBBolt(Legends p, Location l, Player pl)
+    public OBBolt(Oblivion p, Location l, Player pl)
     {
         this.plugin = p;
         this.loc = l;
