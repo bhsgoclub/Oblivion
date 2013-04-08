@@ -9,14 +9,23 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.ArrayList;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
-import net.minecraft.server.EntityPlayer;
-import net.minecraft.server.MobEffect;
+import net.minecraft.server.v1_5_R2.DataWatcher;
+import net.minecraft.server.v1_5_R2.EntityPlayer;
+import net.minecraft.server.v1_5_R2.InventoryLargeChest;
+import net.minecraft.server.v1_5_R2.MathHelper;
+import net.minecraft.server.v1_5_R2.MobEffect;
+import net.minecraft.server.v1_5_R2.Packet20NamedEntitySpawn;
+import net.minecraft.server.v1_5_R2.Packet24MobSpawn;
+import net.minecraft.server.v1_5_R2.TileEntityChest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -26,18 +35,37 @@ import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
+import org.bukkit.configuration.Configuration;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftBlaze;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftChicken;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftCow;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftCreeper;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftEnderDragon;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftEnderman;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftGhast;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftGiant;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftMushroomCow;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPig;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPigZombie;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPlayer;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftSheep;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftSilverfish;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftSkeleton;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftSlime;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftSpider;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftSquid;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftVillager;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftWolf;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftZombie;
 import org.bukkit.entity.Blaze;
 import org.bukkit.entity.Chicken;
 import org.bukkit.entity.Cow;
-import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.Creeper;
 import org.bukkit.entity.EnderDragon;
 import org.bukkit.entity.Enderman;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Ghast;
 import org.bukkit.entity.Giant;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Item;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.MushroomCow;
 import org.bukkit.entity.Pig;
@@ -52,51 +80,17 @@ import org.bukkit.entity.Squid;
 import org.bukkit.entity.Villager;
 import org.bukkit.entity.Wolf;
 import org.bukkit.entity.Zombie;
-import org.bukkit.event.Event.Priority;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.PermissionAttachment;
-import org.bukkit.plugin.*;
+import org.bukkit.plugin.PluginDescriptionFile;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.configuration.file.FileConfiguration
+
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.modules.limits.LimitsModule;
-
-import com.iCo6.iConomy;
-import com.iCo6.handlers.Money;
-import com.nijikokun.register.Register;
-import com.nijikokun.register.payment.Method;
-import com.nijikokun.register.payment.Method.MethodAccount;
-import com.nijikokun.register.payment.Methods;
-
-
-import java.util.HashMap;
-import java.util.Timer;
-import java.util.TimerTask;
-
-import net.minecraft.server.DataWatcher;
-import net.minecraft.server.EntityLiving;
-import net.minecraft.server.EntityPig;
-import net.minecraft.server.EntitySkeleton;
-import net.minecraft.server.EntitySquid;
-import net.minecraft.server.InventoryLargeChest;
-import net.minecraft.server.MathHelper;
-import net.minecraft.server.Packet20NamedEntitySpawn;
-import net.minecraft.server.Packet24MobSpawn;
-import net.minecraft.server.Packet29DestroyEntity;
-import net.minecraft.server.TileEntityChest;
-
-import org.bukkit.craftbukkit.CraftWorld;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.entity.Player;
-import org.bukkit.ChatColor;
-import org.bukkit.event.Event.Type;
-import org.bukkit.event.Event;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.plugin.PluginManager;
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class Oblivion extends JavaPlugin {
@@ -408,7 +402,7 @@ public class Oblivion extends JavaPlugin {
 				File statics = new File("Players/"+player_name+ ".yml");
 		
 				playerData = new Configuration(statics);
-				playerData.load();
+				((Oblivion) playerData).load();
 				
 				Player_Saves.put(player_name, playerData); //Add the data to the dictionary!
 				System.out.println("Loading save data for " + player_name);
@@ -426,7 +420,7 @@ public class Oblivion extends JavaPlugin {
 		
 			if (config != null)
 			{
-				config.save();
+				((Oblivion) config).save();
 			}
 	}
 	
@@ -448,9 +442,9 @@ public class Oblivion extends JavaPlugin {
 	protected static Buildr_Converter_BlockToDrop BlockConverter;
 	protected static Random rand;
 
-	private final LGPlayerListener playerListener = new LGPlayerListener(this);
-	private final LGBlockListener blockListener = new LGBlockListener(this);
-	private final LGMobListener mobListener = new LGMobListener(this);
+	private final OBPlayerListener playerListener = new OBPlayerListener(this);
+	private final OBBlockListener blockListener = new OBBlockListener(this);
+	private final OBMobListener mobListener = new OBMobListener(this);
 	
 	/**
 	 * Hook parser
@@ -960,7 +954,7 @@ public class Oblivion extends JavaPlugin {
 			{
 				int ti2merID = playerConfig(player).getInt("sprintTimer", 0);
 				player.getServer().getScheduler().cancelTask(ti2merID);
-    	    	LGSprinter sprint = new LGSprinter(player, this);
+    	    	OBSprinter sprint = new OBSprinter(player, this);
     	    	
     	    	int stam = skillLevel(player, "Sprint");
     			int boost = stam*3;

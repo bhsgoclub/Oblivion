@@ -258,14 +258,14 @@ public class OBMobListener implements Listener
 			 
 			
 			 
-			 if (damager instanceof CraftCaveSpider)
+			 if (damager instanceof CaveSpider)
 			 {
 				 event.setDamage(10);
 			 }
 			 
-			 if (damager instanceof CraftLightningStrike)
+			 if (damager instanceof LightningStrike)
 			 {
-				 CraftLightningStrike strike = (CraftLightningStrike)damager;
+				 LightningStrike strike = (LightningStrike)damager;
 				 strike.setFireTicks(0);
 
 				 event.setDamage(2);
@@ -276,11 +276,11 @@ public class OBMobListener implements Listener
 			 }
 			 else if (damager instanceof Player)
 		     {
-		    	 String spec = plugin.playerConfig(((CraftPlayer) damager)).getString("current_spec", "");
+		    	 String spec = plugin.playerConfig(((Player) damager)).getString("current_spec", "");
 		        	
 			        if (spec.equalsIgnoreCase("idiot")||spec.equalsIgnoreCase("mage"))
 			        {
-			        	((CraftPlayer) damager).sendMessage(ChatColor.RED+"You cannot use melee.");
+			        	((Player) damager).sendMessage(ChatColor.RED+"You cannot use melee.");
 			        	event.setCancelled(true);
 			        	return;
 			        }
