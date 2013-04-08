@@ -3,6 +3,7 @@ package bhsgoclub.Oblivion;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.FilenameFilter;
@@ -17,6 +18,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import net.minecraft.server.v1_5_R2.DataWatcher;
 import net.minecraft.server.v1_5_R2.EntityPlayer;
@@ -299,6 +302,46 @@ public class Oblivion extends JavaPlugin {
 	
 	
 	
+	
+	public void loadConfig()
+	{
+    	Logger log = getServer().getLogger();
+		/**
+		 * Check to see if there's a config.
+		 * If not then create a new one.
+		 */
+		File config = new File(getDataFolder() + "/playerdata.yml");
+		if(!config.exists())
+		{
+			try{
+				getDataFolder().mkdir();
+				config.createNewFile();
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "[Oblivion] Couldn't create config");
+			}
+
+			try {
+				FileOutputStream fos = new FileOutputStream(new File(getDataFolder() + File.separator + "playerdata.yml"));
+				InputStream is = getResource("playerdata.yml");
+				byte[] linebuffer = new byte[4096];
+				int lineLength = 0;
+				while((lineLength = is.read(linebuffer)) > 0)
+				{
+					fos.write(linebuffer, 0, lineLength);
+				}
+				fos.close();
+
+				log.log(Level.INFO, "[Oblivion] Wrote new config");
+
+			} catch (IOException e) {
+				log.log(Level.SEVERE, "[Oblivion] Couldn't write config: " + e);
+			}	
+		}
+		else
+		{
+			log.log(Level.INFO, "[Oblivion] Config found.");
+		}
+	}
 	
 	
 	
