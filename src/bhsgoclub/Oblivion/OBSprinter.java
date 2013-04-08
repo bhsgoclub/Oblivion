@@ -6,12 +6,12 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.*;
 
-public class LGSprinter implements Runnable
+public class OBSprinter implements Runnable
 {
 
 	public Player player;
-    public Legends plugin;
-    public LGSprinter(Player tochange, Legends p)
+    public Oblivion plugin;
+    public OBSprinter(Player tochange, Oblivion p)
     {
         this.player = tochange;
         this.plugin = p;

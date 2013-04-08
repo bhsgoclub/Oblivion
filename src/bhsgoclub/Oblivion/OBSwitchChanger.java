@@ -5,20 +5,20 @@ import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftExperienceOrb;
-import org.bukkit.craftbukkit.entity.CraftItem;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.material.Button;
 import org.bukkit.scheduler.*;
 
-public class LGSwitchChanger implements Runnable
+public class OBSwitchChanger implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public Material mat;
     public Block block;
-    public LGSwitchChanger(Legends p, Block b)
+    public OBSwitchChanger(Oblivion p, Block b)
     {
         this.plugin = p;
         this.block = b;

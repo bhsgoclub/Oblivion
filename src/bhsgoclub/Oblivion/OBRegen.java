@@ -4,13 +4,13 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGRegen implements Runnable
+public class OBRegen implements Runnable
 {
 
 	public Block block;
-    public Legends plugin;
+    public Oblivion plugin;
     public Material m;
-    public LGRegen(Block tochange, Material g, Legends p)
+    public OBRegen(Block tochange, Material g, Oblivion p)
     {
         this.block = tochange;
         this.plugin = p;
