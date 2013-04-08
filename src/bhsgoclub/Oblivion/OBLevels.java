@@ -21,12 +21,12 @@ import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.craftbukkit.entity.CraftPigZombie;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
+import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
 
-import net.minecraft.server.Packet20NamedEntitySpawn;
-import net.minecraft.server.Packet24MobSpawn;
-import net.minecraft.server.Packet29DestroyEntity;
+import net.minecraft.server.v1_5_R2.Packet20NamedEntitySpawn;
+import net.minecraft.server.v1_5_R2.Packet24MobSpawn;
+import net.minecraft.server.v1_5_R2.Packet29DestroyEntity;
 
 /*import com.griefcraft.lwc.LWC;
 import com.griefcraft.model.LWCPlayer;
@@ -35,10 +35,10 @@ import com.griefcraft.modules.limits.LimitsModule;
 import com.griefcraft.util.config.Configuration;*/
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 
-public class LGLevels implements CommandExecutor {
-	private final Legends plugin;
+public class OBLevels implements CommandExecutor {
+	private Oblivion plugin;
 
-	public LGLevels(Legends plugin) {
+	public void OBLevels(Oblivion plugin) {
 		this.plugin = plugin;
 	}
 
