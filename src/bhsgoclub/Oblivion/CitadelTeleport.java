@@ -10,9 +10,9 @@ import org.bukkit.scheduler.*;
 public class CitadelTeleport implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public Player player;
-    public CitadelTeleport(Legends p, Player t)
+    public CitadelTeleport(Oblivion p, Player t)
     {
         this.plugin = p;
         this.player = t;

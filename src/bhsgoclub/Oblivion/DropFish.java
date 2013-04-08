@@ -3,9 +3,9 @@ package bhsgoclub.Oblivion;
 import java.util.Timer;
 import java.util.TimerTask;
 import org.bukkit.event.player.PlayerDropItemEvent;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.Listener;
 
-public class DropFish extends PlayerListener {
+public class DropFish implements Listener {
 
 	private boolean dropedFish = false;
 

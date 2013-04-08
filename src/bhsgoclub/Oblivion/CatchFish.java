@@ -2,10 +2,10 @@ package bhsgoclub.Oblivion;
 
 import java.util.Timer;
 import java.util.TimerTask;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
-public class CatchFish extends PlayerListener {
+public class CatchFish implements Listener {
 
 	private boolean caughtFish = false;
 
