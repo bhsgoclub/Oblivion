@@ -12,16 +12,16 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
-import org.bukkit.craftbukkit.CraftWorld;
-import org.bukkit.craftbukkit.entity.CraftArrow;
-import org.bukkit.craftbukkit.entity.CraftCaveSpider;
-import org.bukkit.craftbukkit.entity.CraftGiant;
-import org.bukkit.craftbukkit.entity.CraftHumanEntity;
-import org.bukkit.craftbukkit.entity.CraftItem;
-import org.bukkit.craftbukkit.entity.CraftLightningStrike;
-import org.bukkit.craftbukkit.entity.CraftPig;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.craftbukkit.entity.CraftSnowball;
+import org.bukkit.World;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.CaveSpider;
+import org.bukkit.entity.Giant;
+import org.bukkit.entity.HumanEntity;
+import org.bukkit.entity.Item;
+import org.bukkit.entity.LightningStrike;
+import org.bukkit.entity.Pig;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Snowball;
 import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.*;
@@ -31,6 +31,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
 import com.sk89q.worldedit.Vector;
+import org.bukkit.event.Listener;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.domains.DefaultDomain;
@@ -38,10 +39,10 @@ import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedCuboidRegion;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
 
-public class LGMobListener extends EntityListener
+public class OBMobListener implements Listener
 {
-	 private final Legends plugin;
-	 public LGMobListener(Legends instance)
+	 private final Oblivion plugin;
+	 public OBMobListener(Oblivion instance)
 	 {
 	     plugin = instance;
 	 }
@@ -70,9 +71,9 @@ public class LGMobListener extends EntityListener
 	{
 		Entity e = event.getEntity();
 		
-		if (e instanceof Giant || e instanceof CraftGiant)
+		if (e instanceof Giant || e instanceof Giant)
 		{
-			LGGiant mana_bar = new LGGiant(plugin, (CraftGiant)e);
+			OBGiant mana_bar = new OBGiant(plugin, (Giant)e);
 			e.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 20, 20);
 		}
 	}
@@ -109,7 +110,7 @@ public class LGMobListener extends EntityListener
 					//if (entity_id == -1 || p.getWorld().getEntities().get(entity_id).isDead())
 					//{
 						CaveSpider zombie = (CaveSpider) p.getWorld().spawnCreature(event.getEntity().getLocation().add(0, 1, 0), CreatureType.CAVE_SPIDER);
-						LGAIZombie mana_bar = new LGAIZombie(p, plugin, zombie);
+						OBAIZombie mana_bar = new OBAIZombie(p, plugin, zombie);
 
 						
 						int timerID = p.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 5);
@@ -132,11 +133,11 @@ public class LGMobListener extends EntityListener
 			else
 			{
 		    	 
-		    	String spec = plugin.playerConfig(((CraftPlayer) shooter)).getString("current_spec", "");
+		    	String spec = plugin.playerConfig(((Player) shooter)).getString("current_spec", "");
 		        	
 		        if (spec.equalsIgnoreCase("paladin")||spec.equalsIgnoreCase("idiot")||spec.equalsIgnoreCase("mage"))
 		        {
-		        	((CraftPlayer) shooter).sendMessage(ChatColor.RED+"You cannot use a bow.");
+		        	((Player) shooter).sendMessage(ChatColor.RED+"You cannot use a bow.");
 		        	event.getEntity().remove();
 		        	
 		        	return;
@@ -201,7 +202,7 @@ public class LGMobListener extends EntityListener
     	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Location",coords );
     	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Spell",spell );
 
-    	LGBlastZones mana_bar = new LGBlastZones(plugin, current+"|"+plugin.playerName(p));
+    	OBBlastZones mana_bar = new OBBlastZones(plugin, current+"|"+plugin.playerName(p));
     	int timerID = p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, mana_bar, 20*seconds);
     }
     

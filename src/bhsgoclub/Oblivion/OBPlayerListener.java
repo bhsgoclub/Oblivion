@@ -58,7 +58,7 @@ import org.bukkit.entity.*;
 
 import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
-import org.bukkit.util.config.Configuration;
+import org.bukkit.configuration.Configuration;
 
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.Vector;
@@ -1861,11 +1861,11 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 							
 							p.getWorld().strikeLightning(block.getLocation());
 
-							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBolt(plugin, block.getLocation(), p ),10);
-							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBolt(plugin, block.getRelative(-1, 0, 0).getLocation(), p ),30);
-							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBolt(plugin, block.getRelative(-1, 0, 1).getLocation(), p ),40);
-							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBolt(plugin, block.getRelative(0, 0, -1).getLocation(), p ),70);
-							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBolt(plugin, block.getRelative(1, 0, -1).getLocation(), p ),80);
+							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBolt(plugin, block.getLocation(), p ),10);
+							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBolt(plugin, block.getRelative(-1, 0, 0).getLocation(), p ),30);
+							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBolt(plugin, block.getRelative(-1, 0, 1).getLocation(), p ),40);
+							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBolt(plugin, block.getRelative(0, 0, -1).getLocation(), p ),70);
+							Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBolt(plugin, block.getRelative(1, 0, -1).getLocation(), p ),80);
 										    		
 							removeInventoryItems(p.getInventory(), Material.ENDER_PEARL, 1);
 							

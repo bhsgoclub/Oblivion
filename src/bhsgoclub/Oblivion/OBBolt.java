@@ -4,13 +4,13 @@ import java.util.List;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
-public class LGBolt implements Runnable
+public class OBBolt implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public Location loc;
     public Player player;
-    public LGBolt(Legends p, Location l, Player pl)
+    public OBBolt(Legends p, Location l, Player pl)
     {
         this.plugin = p;
         this.loc = l;

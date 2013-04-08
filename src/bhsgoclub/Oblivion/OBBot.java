@@ -8,22 +8,22 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftExperienceOrb;
-import org.bukkit.craftbukkit.entity.CraftItem;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
 
-public class LGBot implements Runnable{
+public class OBBot implements Runnable{
 
-	 public Legends plugin;
+	 public Oblivion plugin;
 
 	   String message;
 	   Player p;
 	   private long time_chage;
 	    
-	    public LGBot(Legends p, String message, Player time)
+	    public OBBot(Oblivion p, String message, Player time)
 	    {
 	    	this.plugin = p;
 	        this.message = message;

@@ -11,23 +11,23 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftMonster;
-import org.bukkit.craftbukkit.entity.CraftPigZombie;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.craftbukkit.entity.CraftVillager;
+import org.bukkit.entity.Monster;
+import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Villager;
 import org.bukkit.entity.CreatureType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGNPC_Spawner implements Runnable
+public class OBNPC_Spawner implements Runnable
 {
 
-    public Legends plugin;
-    List<CraftMonster> npc_list;
+    public Oblivion plugin;
+    List<Monster> npc_list;
     Map<String, LivingEntity> npc_dict;
     
-    public LGNPC_Spawner(Legends p)
+    public OBNPC_Spawner(Oblivion p)
     {
         this.plugin = p;
         this.npc_dict = new HashMap<String, LivingEntity>();
@@ -127,9 +127,9 @@ public class LGNPC_Spawner implements Runnable
 	                    for (Player p2 : Bukkit.getServer().getOnlinePlayers())
 	                    {
 	                    	if (!t.equalsIgnoreCase("wolf"))
-	                    		((CraftPlayer) p2).getHandle().netServerHandler.sendPacket(p29);
+	                    		((Player) p2).getHandle().netServerHandler.sendPacket(p29);
 	                    	
-	                        ((CraftPlayer) p2).getHandle().netServerHandler.sendPacket(p20);
+	                        ((Player) p2).getHandle().netServerHandler.sendPacket(p20);
 	                    }
 						continue;
 					}
