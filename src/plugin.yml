@@ -1,5 +1,5 @@
 name: Oblivion
-main: ShadovvMoon.Oblivion.Oblivion
+main: bhsgoclub.Oblivion.Oblivion
 version: 1.0
 depend: [WorldGuard, PermissionsBukkit, iConomy]
 commands:
