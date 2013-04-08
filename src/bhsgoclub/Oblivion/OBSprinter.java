@@ -1,10 +1,7 @@
 package bhsgoclub.Oblivion;
 import org.bukkit.ChatColor;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.scheduler.*;
 
 public class OBSprinter implements Runnable
 {
@@ -53,7 +50,7 @@ public class OBSprinter implements Runnable
     	{
     		this.plugin.gainMana(this.player, -4);
     		
-    		int stam = plugin.skillLevel(this.player, "Sprint");
+    		plugin.skillLevel(this.player, "Sprint");
     		plugin.gainExperience(this.player, "Sprint", 2);
     	}
     }

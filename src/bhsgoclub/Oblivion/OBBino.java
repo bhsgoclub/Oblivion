@@ -1,13 +1,8 @@
 package bhsgoclub.Oblivion;
-import net.minecraft.server.v1_5_R2.EntityPlayer;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Player;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.scheduler.*;
 
 public class OBBino implements Runnable
 {
@@ -26,7 +21,7 @@ public class OBBino implements Runnable
     	String binoculars = plugin.playerConfig(this.player).getString("Binoculars", "");
     	if (binoculars.equalsIgnoreCase("true"))
     	{
-    		EventHandler eplayer = ((Object) (Player)this.player).getHandle();
+    		EventHandler eplayer = ((Object) (CraftPlayer)this.player).getHandle();
     		plugin.doEffect(eplayer, 2, (float)10.0, 11);
     	}
     	else

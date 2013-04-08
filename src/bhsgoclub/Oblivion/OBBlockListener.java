@@ -26,12 +26,13 @@ import org.bukkit.event.block.BlockRedstoneEvent;
 import org.bukkit.event.block.SignChangeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.Plugin;
+import org.bukkit.event.Listener;
 
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-public class OBBlockListener extends BlockListener
+public class OBBlockListener implements Listener
 {
 	private final Oblivion plugin;
 
@@ -40,7 +41,7 @@ public class OBBlockListener extends BlockListener
         this.plugin = plugin;
     }
     
-    @Override
+    //@Override //This supposed to be here?
     public void onSignChange(SignChangeEvent event)
     {
     	String main = event.getLine(1);
@@ -620,7 +621,7 @@ public class OBBlockListener extends BlockListener
     	if (main_block.getType() != Material.DIRT && main_block.getType() != Material.GRASS)
     		return;
     	
-    	((CraftPlayer)p).getHandle().itemInWorldManager.c(main_block.getX(), main_block.getY(), main_block.getZ());
+    	((CraftPlayer)p).getHandle().playerInteractManager.c(main_block.getX(), main_block.getY(), main_block.getZ());
     }
     
     public void superSpade(Block main_block, Player p)
@@ -751,7 +752,7 @@ public class OBBlockListener extends BlockListener
                                         byte data = bs2.getData();
                                         bs2.setData((byte) (data | 0x8));
                                         
-                                        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGSwitchChanger(plugin, bs2), 20*5);
+                                        Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBSwitchChanger(plugin, bs2), 20*5);
                             	    	
                                     }
                                 }
@@ -866,7 +867,7 @@ public class OBBlockListener extends BlockListener
                                     byte data = bs2.getData();
                                     bs2.setData((byte) (data | 0x8));
                                     
-                                    Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGSwitchChanger(plugin, bs2), 20*5);
+                                    Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBSwitchChanger(plugin, bs2), 20*5);
                         	    	
                                 }
                             }
@@ -1152,7 +1153,7 @@ public class OBBlockListener extends BlockListener
     	if (is_regenerating)
     	{
     		//Create a block scheduler
-    		LGRegen sprint = new LGRegen(event.getBlock(), event.getBlock().getType(), plugin);
+    		OBRegen sprint = new OBRegen(event.getBlock(), event.getBlock().getType(), plugin);
 			Bukkit.getServer().getScheduler().scheduleSyncDelayedTask(plugin, sprint, 600);
 		}
     	

@@ -5,8 +5,6 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
-import org.bukkit.entity.ExperienceOrb;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
 public class OBAutoSave implements Runnable

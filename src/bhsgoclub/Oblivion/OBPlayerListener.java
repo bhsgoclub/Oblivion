@@ -7,18 +7,18 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import net.minecraft.server.Container;
-import net.minecraft.server.ContainerChest;
-import net.minecraft.server.ContainerPlayer;
-import net.minecraft.server.EntityFireball;
-import net.minecraft.server.EntityLiving;
-import net.minecraft.server.EntityPlayer;
-import net.minecraft.server.EntityWolf;
-import net.minecraft.server.InventoryLargeChest;
-import net.minecraft.server.MobEffect;
-import net.minecraft.server.Packet;
-import net.minecraft.server.Packet20NamedEntitySpawn;
-import net.minecraft.server.TileEntityChest;
+import net.minecraft.server.v1_5_R2.Container;
+import net.minecraft.server.v1_5_R2.ContainerChest;
+import net.minecraft.server.v1_5_R2.ContainerPlayer;
+import net.minecraft.server.v1_5_R2.EntityFireball;
+import net.minecraft.server.v1_5_R2.EntityLiving;
+import net.minecraft.server.v1_5_R2.EntityPlayer;
+import net.minecraft.server.v1_5_R2.EntityWolf;
+import net.minecraft.server.v1_5_R2.InventoryLargeChest;
+import net.minecraft.server.v1_5_R2.MobEffect;
+import net.minecraft.server.v1_5_R2.Packet;
+import net.minecraft.server.v1_5_R2.Packet20NamedEntitySpawn;
+import net.minecraft.server.v1_5_R2.TileEntityChest;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
@@ -59,6 +59,8 @@ import org.bukkit.entity.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.craftbukkit.v1_5_R2.CraftWorld;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPlayer;
 
 import com.sk89q.worldedit.BlockVector;
 import com.sk89q.worldedit.Vector;
@@ -102,11 +104,11 @@ public class OBPlayerListener implements Listener
 			}
 			
 	    	
-	    	LGManaBar mana_bar = new LGManaBar(event.getPlayer(), plugin);
+	    	OBManaBar mana_bar = new OBManaBar(event.getPlayer(), plugin);
 	    	int timerID = event.getPlayer().getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 50, 50);
 	    	plugin.playerConfig(event.getPlayer()).setProperty("manaTimer", timerID);
 	    			
-	    	LGSprinter sprint = new LGSprinter(event.getPlayer(), plugin);
+	    	OBSprinter sprint = new OBSprinter(event.getPlayer(), plugin);
 	    	
 	    	int staminaBoosts = plugin.playerConfig(event.getPlayer()).getInt("staminaBoost", 0);
 			staminaBoosts++;
@@ -968,7 +970,7 @@ public class OBPlayerListener implements Listener
 	    	
 
 	    	
-	    	p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer2(plugin, b), 60);
+	    	p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer2(plugin, b), 60);
 	    	
 	    	sendGlobalBlockChange(b.getLocation(), Material.SOUL_SAND, b.getData());
 	    	//b.setType(Material.SOUL_SAND);
@@ -1146,7 +1148,7 @@ public class OBPlayerListener implements Listener
 	    	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Location",coords );
 	    	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Spell",spell );
 
-	    	LGBlastZones mana_bar = new LGBlastZones(plugin, current+"|"+plugin.playerName(p));
+	    	OBBlastZones mana_bar = new OBBlastZones(plugin, current+"|"+plugin.playerName(p));
 	    	int timerID = p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, mana_bar, 20*seconds);
 	    }
 	    
@@ -1223,7 +1225,7 @@ public class OBPlayerListener implements Listener
 					    	
 					    	long current_times = p.getWorld().getTime();
 					    	p.getWorld().setTime(18000);
-					    	p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGTimeChanger(plugin, current_times, p.getWorld()), 100);
+					    	p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBTimeChanger(plugin, current_times, p.getWorld()), 100);
 							
 					    	
 					    	addBlastZone(p, block.getLocation(), 10, "darkness of the moon");
@@ -1579,7 +1581,7 @@ public class OBPlayerListener implements Listener
 		
 							Zombie zombie = (Zombie) p.getWorld().spawnCreature(block.getLocation(), CreatureType.ZOMBIE);
 							
-							LGAIZombie mana_bar = new LGAIZombie(p, plugin, zombie);
+							OBAIZombie mana_bar = new OBAIZombie(p, plugin, zombie);
 
 							int timerID = p.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 10);
 					    	//getConfig().setProperty(playerName(player)+".manaTimer", timerID);
@@ -2349,7 +2351,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			}
 	    public void botReply(String message, Player p)
 	    {
-	    	p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBot(plugin, message, p), plugin.random_num(20, 10));
+	    	p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBot(plugin, message, p), plugin.random_num(20, 10));
 	    }
 	    
 	  
@@ -2427,7 +2429,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        	}
 	        	else
 	        	{
-		        	LGBino mana_bar = new LGBino(p, plugin);
+		        	OBBino mana_bar = new OBBino(p, plugin);
 					int timerID = p.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 5);
 					plugin.playerConfig(p).setProperty( "BScheduler", timerID);
 					plugin.playerConfig(p).setProperty( "Binoculars", "true");
@@ -3179,7 +3181,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		
 			        		int ti2merID = plugin.playerConfig(event.getPlayer()).getInt("sprintTimer", 0);
 			    	    	event.getPlayer().getServer().getScheduler().cancelTask(ti2merID);
-			    	    	LGSprinter sprint = new LGSprinter(event.getPlayer(), plugin);
+			    	    	OBSprinter sprint = new LGSprinter(event.getPlayer(), plugin);
 			    	    	
 			    	    	int stam = plugin.skillLevel(event.getPlayer(), "Sprint");
 			    			int boost = stam*3;

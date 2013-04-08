@@ -1,5 +1,4 @@
 package bhsgoclub.Oblivion;
-import java.util.Dictionary;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,15 +9,10 @@ import net.minecraft.server.v1_5_R2.Packet29DestroyEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.block.Block;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.PigZombie;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Villager;
-import org.bukkit.entity.CreatureType;
+import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.*;
 
 public class OBNPC_Spawner implements Runnable
 {
@@ -58,7 +52,7 @@ public class OBNPC_Spawner implements Runnable
 						//Respawn
 						
 						//Delete the old piggy
-						CreatureType type = CreatureType.VILLAGER;
+						EntityType type = EntityType.VILLAGER;
 						String e = plugin.getTelepad().getString("NPCS"+"."+loc+".Equipment", "0");
 						
 
@@ -86,21 +80,21 @@ public class OBNPC_Spawner implements Runnable
 					
 						
 						if (t.equalsIgnoreCase("villager"))
-						   type = CreatureType.VILLAGER;
+						   type = EntityType.VILLAGER;
 						else if (t.equalsIgnoreCase("pigzombie"))
-							   type = CreatureType.PIG_ZOMBIE;
+							   type = EntityType.PIG_ZOMBIE;
 						else if (t.equalsIgnoreCase("zombie"))
-							   type = CreatureType.ZOMBIE;
+							   type = EntityType.ZOMBIE;
 						else if (t.equalsIgnoreCase("creeper"))
-							   type = CreatureType.CREEPER;
+							   type = EntityType.CREEPER;
 						else if (t.equalsIgnoreCase("pig"))
-							   type = CreatureType.PIG;
+							   type = EntityType.PIG;
 						else if (t.equalsIgnoreCase("wolf"))
-							   type = CreatureType.WOLF;
+							   type = EntityType.WOLF;
 						else if (t.equalsIgnoreCase("spider"))
-							   type = CreatureType.SPIDER;
+							   type = EntityType.SPIDER;
 						else if (t.equalsIgnoreCase("skeleton"))
-							   type = CreatureType.SKELETON;
+							   type = EntityType.SKELETON;
 						
 						LivingEntity actual_wolf = Bukkit.getServer().getWorld("world").spawnCreature(locat, type);
 	                    

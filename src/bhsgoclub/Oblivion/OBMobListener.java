@@ -12,16 +12,8 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.block.BlockState;
+import org.bukkit.craftbukkit.v1_5_R2.CraftWorld;
 //import org.bukkit.World;
-import org.bukkit.entity.Arrow;
-import org.bukkit.entity.CaveSpider;
-import org.bukkit.entity.Giant;
-import org.bukkit.entity.HumanEntity;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.LightningStrike;
-import org.bukkit.entity.Pig;
-import org.bukkit.entity.Player;
-import org.bukkit.entity.Snowball;
 import org.bukkit.entity.*;
 import org.bukkit.event.Event;
 import org.bukkit.event.entity.*;
@@ -109,7 +101,7 @@ public class OBMobListener implements Listener
 					//int entity_id = plugin.getConfig().getInt(p.getName()+".PetID", -1);
 					//if (entity_id == -1 || p.getWorld().getEntities().get(entity_id).isDead())
 					//{
-						CaveSpider zombie = (CaveSpider) p.getWorld().spawnCreature(event.getEntity().getLocation().add(0, 1, 0), CreatureType.CAVE_SPIDER);
+						CaveSpider zombie = (CaveSpider) p.getWorld().spawnEntity(event.getEntity().getLocation().add(0, 1, 0), EntityType.CAVE_SPIDER);
 						OBAIZombie mana_bar = new OBAIZombie(p, plugin, zombie);
 
 						
@@ -410,7 +402,7 @@ public class OBMobListener implements Listener
 			    			//player.sendMessage(ChatColor.RED+"Your security status in this city has decreased.");
 			    			player.sendMessage(ChatColor.GOLD+"You are being attacked by Skycraft Citadel Guards!");
 			    			
-			    			CaveSpider zombie = (CaveSpider) player.getWorld().spawnCreature(player.getLocation(), CreatureType.CAVE_SPIDER);
+			    			CaveSpider zombie = (CaveSpider) player.getWorld().spawnEntity(player.getLocation(), EntityType.CAVE_SPIDER);
 							zombie.setTarget(player);
 							player.damage(10, zombie);
 	
@@ -523,7 +515,7 @@ public class OBMobListener implements Listener
 			    			//player.sendMessage(ChatColor.RED+"Your security status in this city has decreased.");
 			    			player.sendMessage(ChatColor.GOLD+"You are being attacked by Skycraft Citadel Guards!");
 			    			
-			    			CaveSpider zombie = (CaveSpider) player.getWorld().spawnCreature(player.getLocation(), CreatureType.CAVE_SPIDER);
+			    			CaveSpider zombie = (CaveSpider) player.getWorld().spawnEntity(player.getLocation(), EntityType.CAVE_SPIDER);
 							zombie.setTarget(player);
 							player.damage(10, zombie);
 	

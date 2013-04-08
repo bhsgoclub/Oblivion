@@ -487,10 +487,6 @@ public class Oblivion extends JavaPlugin {
 	protected static Buildr_Converter_BlockToDrop BlockConverter;
 	protected static Random rand;
 
-	private final OBPlayerListener playerListener = new OBPlayerListener(this);
-	private final OBBlockListener blockListener = new OBBlockListener(this);
-	private final OBMobListener mobListener = new OBMobListener(this);
-	
 	/**
 	 * Hook parser
 	 */
@@ -805,7 +801,7 @@ public class Oblivion extends JavaPlugin {
 														+ " "
 														+ stack.getType()
 																.toString());
-												p.updateInventory();
+												p.updateInventory(); // Depricated but not fixed yet?
 
 											}
 										}
@@ -2069,40 +2065,39 @@ public class Oblivion extends JavaPlugin {
 		// any events
 		Player_Saves = new HashMap<String,Configuration>();
 
-		CONFIG = getConfiguration();
+		CONFIG = getConfig();
 
 		File statics = new File("settlements_config.yml");
 
 		SETTLEMENTS = new Configuration(statics);
-		SETTLEMENTS.load();
+		((Oblivion) SETTLEMENTS).load();
 		
 		
 		File td = new File("telepad_data.yml");
 
 		TELEPAD_DATA = new Configuration(td);
-		TELEPAD_DATA.load();
+		((Oblivion) TELEPAD_DATA).load();
 		
 		File tpd = new File("task_data.yml");
 
 		TASK_DATA = new Configuration(tpd);
-		TASK_DATA.load();
+		((Oblivion) TASK_DATA).load();
 		
 		File xr = new File("xrayers.yml");
 
 		XRAYERS = new Configuration(xr);
-		XRAYERS.load();
+		((Oblivion) XRAYERS).load();
 		
 		//TASK_DATA
 
 		File blx = new File("block_timers.yml");
 		BLOCK_TIMERS = new Configuration(blx);
-		BLOCK_TIMERS.load();
+		((Oblivion) BLOCK_TIMERS).load();
 		
 		
 		File statics2 = new File("legends_config.yml");
 		STATIC_CONFIG = new Configuration(statics2);
-
-		STATIC_CONFIG.load();
+		((Oblivion) STATIC_CONFIG).load();
 
 		BlockConverter = new Buildr_Converter_BlockToDrop();
 

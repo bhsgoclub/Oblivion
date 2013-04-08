@@ -1,18 +1,7 @@
 package bhsgoclub.Oblivion;
 
-import java.util.List;
-
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.World;
-import org.bukkit.block.Block;
-import org.bukkit.entity.ExperienceOrb;
-import org.bukkit.entity.Item;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.*;
 
 
 public class OBBot implements Runnable{
@@ -21,9 +10,7 @@ public class OBBot implements Runnable{
 
 	   String message;
 	   Player p;
-	   private long time_chage;
-	    
-	    public OBBot(Oblivion p, String message, Player time)
+	   public OBBot(Oblivion p, String message, Player time)
 	    {
 	    	this.plugin = p;
 	        this.message = message;

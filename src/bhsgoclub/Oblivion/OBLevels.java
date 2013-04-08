@@ -1,39 +1,20 @@
 package bhsgoclub.Oblivion;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Effect;
 import org.bukkit.GameMode;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.CaveSpider;
-import org.bukkit.entity.CreatureType;
-import org.bukkit.entity.Monster;
-import org.bukkit.entity.Player;
-import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.block.Block;
-import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.PigZombie;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
-
-import net.minecraft.server.v1_5_R2.Packet20NamedEntitySpawn;
-import net.minecraft.server.v1_5_R2.Packet24MobSpawn;
-import net.minecraft.server.v1_5_R2.Packet29DestroyEntity;
-
-/*import com.griefcraft.lwc.LWC;
-import com.griefcraft.model.LWCPlayer;
-import com.griefcraft.model.Protection;
-import com.griefcraft.modules.limits.LimitsModule;
-import com.griefcraft.util.config.Configuration;*/
-import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
+import org.bukkit.inventory.ItemStack;
 
 public class OBLevels implements CommandExecutor {
 	private Oblivion plugin;
@@ -1175,24 +1156,24 @@ public class OBLevels implements CommandExecutor {
 							plugin.playerConfig(player).setProperty("Pets."+pet_name, amount-1);
 							
 							//Spawn new pet.
-							CreatureType creature = CreatureType.CHICKEN;
+							EntityType creature = EntityType.CHICKEN;
 							
 							if (pet_name.equalsIgnoreCase("Zombie"))
-								creature = CreatureType.ZOMBIE;
+								creature = EntityType.ZOMBIE;
 							else if (pet_name.equalsIgnoreCase("Pig Zombie"))
-								creature = CreatureType.PIG_ZOMBIE;
+								creature = EntityType.PIG_ZOMBIE;
 							else if (pet_name.equalsIgnoreCase("Cave Spider"))
-								creature = CreatureType.CAVE_SPIDER;
+								creature = EntityType.CAVE_SPIDER;
 							else if (pet_name.equalsIgnoreCase("Creeper"))
-								creature = CreatureType.CREEPER;
+								creature = EntityType.CREEPER;
 							else if (pet_name.equalsIgnoreCase("Silverfish"))
-								creature = CreatureType.SILVERFISH;
+								creature = EntityType.SILVERFISH;
 							else if (pet_name.equalsIgnoreCase("Slime"))
-								creature = CreatureType.SLIME;
+								creature = EntityType.SLIME;
 							else if (pet_name.equalsIgnoreCase("Spider"))
-								creature = CreatureType.SPIDER;
+								creature = EntityType.SPIDER;
 							else if (pet_name.equalsIgnoreCase("Enderman"))
-								creature = CreatureType.ENDERMAN;
+								creature = EntityType.ENDERMAN;
 							
 							Monster zombie = (Monster) player.getWorld().spawnCreature(player.getLocation().add(0, 1, 0), creature);
 							OBAIZombie mana_bar = new OBAIZombie(player, plugin, zombie);

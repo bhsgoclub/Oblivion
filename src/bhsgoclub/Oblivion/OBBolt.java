@@ -1,6 +1,4 @@
 package bhsgoclub.Oblivion;
-import java.util.List;
-
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
