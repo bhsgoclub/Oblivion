@@ -1,4 +1,4 @@
-package ShadovvMoon.Legend;
+package bhsgoclub.Oblivion;
 
 import java.io.IOException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package ShadovvMoon.Legend;
+package bhsgoclub.Oblivion;
 
 import java.util.Timer;
 import java.util.TimerTask;

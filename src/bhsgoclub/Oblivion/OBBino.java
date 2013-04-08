@@ -1,4 +1,4 @@
-package ShadovvMoon.Legend;
+package bhsgoclub.Oblivion;
 import net.minecraft.server.EntityPlayer;
 
 import org.bukkit.Bukkit;

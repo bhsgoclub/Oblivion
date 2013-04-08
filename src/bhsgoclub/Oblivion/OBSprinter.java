@@ -1,4 +1,4 @@
-package ShadovvMoon.Legend;
+package bhsgoclub.Oblivion;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.block.Block;

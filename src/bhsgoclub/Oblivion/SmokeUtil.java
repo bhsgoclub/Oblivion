@@ -1,4 +1,4 @@
-package ShadovvMoon.Legend;
+package bhsgoclub.Oblivion;
 
 import java.util.Collection;
 import java.util.Random;

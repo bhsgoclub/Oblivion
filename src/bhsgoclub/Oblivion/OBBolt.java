@@ -1,4 +1,4 @@
-package ShadovvMoon.Legend;
+package bhsgoclub.Oblivion;
 import java.util.List;
 
 import org.bukkit.Location;
