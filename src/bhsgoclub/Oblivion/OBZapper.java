@@ -6,20 +6,20 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftExperienceOrb;
-import org.bukkit.craftbukkit.entity.CraftItem;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGZapper implements Runnable
+public class OBZapper implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public Block ee;
-    public LGPlayerListener sender;
+    public OBPlayerListener sender;
     public Player pe;
-    public LGZapper(Legends p, Block e, LGPlayerListener sender, Player pe)
+    public OBZapper(Oblivion p, Block e, OBPlayerListener sender, Player pe)
     {
         this.plugin = p;
         this.ee = e;

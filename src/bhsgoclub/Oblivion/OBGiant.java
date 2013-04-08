@@ -7,12 +7,12 @@ import org.bukkit.Bukkit;
 import org.bukkit.Effect;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftArrow;
-import org.bukkit.craftbukkit.entity.CraftCreeper;
-import org.bukkit.craftbukkit.entity.CraftGiant;
-import org.bukkit.craftbukkit.entity.CraftPlayer;
-import org.bukkit.craftbukkit.entity.CraftSpider;
-import org.bukkit.craftbukkit.entity.CraftZombie;
+import org.bukkit.entity.Arrow;
+import org.bukkit.entity.Creeper;
+import org.bukkit.entity.Giant;
+import org.bukkit.entity.Player;
+import org.bukkit.entity.Spider;
+import org.bukkit.entity.Zombie;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -26,14 +26,14 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.scheduler.*;
 import org.bukkit.util.Vector;
 
-public class LGGiant implements Runnable
+public class OBGiant implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public Monster ai_player;
     public int state;
     
-    public LGGiant( Legends p, Monster ai)
+    public OBGiant(Oblivion p, Monster ai)
     {
         this.plugin = p;
         this.ai_player = ai;
@@ -62,7 +62,7 @@ public class LGGiant implements Runnable
     		Entity e = list.get(i);
     		if (e instanceof LivingEntity&&e.getLocation().distance(ai_player.getLocation()) <=8 )
     		{
-    			if (e instanceof Player || e instanceof CraftPlayer)
+    			if (e instanceof Player || e instanceof Player)
     			{
     				LivingEntity en = (LivingEntity)e;
     				en.damage(4, ai_player);
@@ -79,8 +79,8 @@ public class LGGiant implements Runnable
     		Entity last_dmg = e.getDamager();
     		if (last_dmg != null)
     		{
-    			if (last_dmg instanceof CraftArrow)
-    				last_dmg = ((CraftArrow) last_dmg).getShooter();
+    			if (last_dmg instanceof Arrow)
+    				last_dmg = ((Arrow) last_dmg).getShooter();
     			
     			if (last_dmg instanceof LivingEntity)
     			{
@@ -118,9 +118,9 @@ public class LGGiant implements Runnable
 	    		Entity e = list.get(i);
 	    		if (e instanceof LivingEntity&&e.getLocation().distance(ai_player.getLocation()) <=8 )
 	    		{
-	    			if (e instanceof Player || e instanceof CraftPlayer)
+	    			if (e instanceof Player || e instanceof Player)
 	    			{
-	    				CraftPlayer en = (CraftPlayer)e;
+	    				Player en = (Player)e;
 	    				
 	    				if (ai_player.getLocation().distance(en.getLocation())<closest_dist)
 	    				{

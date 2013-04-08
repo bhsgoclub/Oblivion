@@ -41,7 +41,7 @@ import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerInventoryEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerItemHeldEvent;
 import org.bukkit.event.player.PlayerPickupItemEvent;
@@ -52,9 +52,9 @@ import org.bukkit.event.player.PlayerRespawnEvent;
 import org.bukkit.entity.*;
 
 
-import org.bukkit.craftbukkit.CraftServer;
-import org.bukkit.craftbukkit.CraftWorld;
-import org.bukkit.craftbukkit.entity.*;
+import org.bukkit.Server;
+import org.bukkit.World;
+import org.bukkit.entity.*;
 
 import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
@@ -74,11 +74,11 @@ import java.util.Timer;
 
 import javax.xml.crypto.Data;
 
-public class LGPlayerListener extends PlayerListener 
+public class OBPlayerListener implements Listener
 {
-	 private final Legends plugin;
+	 private final Oblivion plugin;
 
-	    public LGPlayerListener(Legends instance) {
+	    public OBPlayerListener(Oblivion instance) {
 	        plugin = instance;
 	    }
 

@@ -6,21 +6,21 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
 import org.bukkit.block.Block;
-import org.bukkit.craftbukkit.entity.CraftExperienceOrb;
-import org.bukkit.craftbukkit.entity.CraftItem;
+import org.bukkit.entity.ExperienceOrb;
+import org.bukkit.entity.Item;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGTimeChanger implements Runnable
+public class OBTimeChanger implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
 
    World the_world;
    private long time_chage;
     
-    public LGTimeChanger(Legends p, long time, World w)
+    public OBTimeChanger(Oblivion p, long time, World w)
     {
         this.plugin = p;
         this.time_chage = time;
