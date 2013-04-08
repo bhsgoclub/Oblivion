@@ -5,15 +5,15 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.World;
-import org.bukkit.craftbukkit.entity.CraftExperienceOrb;
+import org.bukkit.entity.ExperienceOrb;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.Player;
 
-public class LGAutoSave implements Runnable
+public class OBAutoSave implements Runnable
 {
 
-    public Legends plugin;
-    public LGAutoSave(Legends p)
+    public Oblivion plugin;
+    public OBAutoSave(Oblivion p)
     {
         this.plugin = p;
     }

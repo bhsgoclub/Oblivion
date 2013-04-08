@@ -9,9 +9,9 @@ import org.bukkit.scheduler.*;
 public class HomeTeleport implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public Player player;
-    public HomeTeleport(Legends p, Player t)
+    public HomeTeleport(Oblivion p, Player t)
     {
         this.plugin = p;
         this.player = t;

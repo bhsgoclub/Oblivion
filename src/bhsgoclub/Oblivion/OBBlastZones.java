@@ -6,12 +6,12 @@ import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGBlastZones implements Runnable
+public class OBBlastZones implements Runnable
 {
 
-    public Legends plugin;
+    public Oblivion plugin;
     public String title;
-    public LGBlastZones(Legends p, String t)
+    public OBBlastZones(Oblivion p, String t)
     {
         this.plugin = p;
         this.title = t;

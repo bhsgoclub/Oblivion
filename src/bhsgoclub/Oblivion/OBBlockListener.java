@@ -40,11 +40,11 @@ import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.protection.ApplicableRegionSet;
 import com.sk89q.worldguard.protection.managers.RegionManager;
 import com.sk89q.worldguard.protection.regions.ProtectedRegion;
-public class LGBlockListener extends BlockListener
+public class OBBlockListener extends BlockListener
 {
-	private final Legends plugin;
+	private final Oblivion plugin;
 
-    public LGBlockListener(final Legends plugin)
+    public OBBlockListener(final Oblivion plugin)
     {
         this.plugin = plugin;
     }

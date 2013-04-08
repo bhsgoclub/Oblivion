@@ -23,15 +23,15 @@ import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.scheduler.*;
 import org.bukkit.util.Vector;
 
-public class LGAIZombie implements Runnable
+public class OBAIZombie implements Runnable
 {
 
 	public Player player;
-    public Legends plugin;
+    public Oblivion plugin;
     public Monster ai_player;
     public int state;
     
-    public LGAIZombie(Player tochange, Legends p, Monster ai)
+    public OBAIZombie(Player tochange, Oblivion p, Monster ai)
     {
         this.player = tochange;
         this.plugin = p;

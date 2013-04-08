@@ -8,12 +8,12 @@ import org.bukkit.craftbukkit.entity.CraftPlayer;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.*;
 
-public class LGBino implements Runnable
+public class OBBino implements Runnable
 {
 
 	public Player player;
-    public Legends plugin;
-    public LGBino(Player tochange, Legends p)
+    public Oblivion plugin;
+    public OBBino(Player tochange, Oblivion p)
     {
         this.player = tochange;
         this.plugin = p;

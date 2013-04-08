@@ -32,9 +32,9 @@ import com.sk89q.worldguard.protection.regions.ProtectedRegion;
  
 public class SaCommands implements CommandExecutor 
 {
-	 private final Legends plugin;
+	 private final Oblivion plugin;
 
-	 public SaCommands(Legends plugin)
+	 public SaCommands(Oblivion plugin)
 	 {
 	       this.plugin = plugin;
 	 }
