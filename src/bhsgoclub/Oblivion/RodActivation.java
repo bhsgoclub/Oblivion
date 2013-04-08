@@ -6,13 +6,13 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerListener;
+import org.bukkit.event.Listener;
 
-public class RodActivation extends PlayerListener {
+public class RodActivation implements Listener {
 
-	private Legends plugin;
+	private Oblivion plugin;
 
-	public RodActivation(Legends instance) {
+	public RodActivation(Oblivion instance) {
 		plugin = instance;
 	}
 
