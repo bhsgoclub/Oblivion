@@ -332,9 +332,9 @@ public class OBMobListener implements Listener
 					    	 
 					    	 
 					    	 
-					    	 if (hit instanceof Player||hit instanceof CraftPlayer)
+					    	 if (hit instanceof Player||hit instanceof Player)
 					    	 {
-						    	 CraftPlayer p = (CraftPlayer)hit;
+						    	 Player p = (Player)hit;
 						    	 
 						    	 
 							     rand = plugin.random_num(20-lvl, 0);
@@ -350,9 +350,9 @@ public class OBMobListener implements Listener
 					    	 }
 					    	 
 					    	 
-					    	 if (hit instanceof Player||hit instanceof CraftPlayer)
+					    	 if (hit instanceof Player||hit instanceof Player)
 					    	 {
-						    	 CraftPlayer p = (CraftPlayer)hit;
+						    	 Player p = (Player)hit;
 						    	 
 						    	 
 							     rand = plugin.random_num(30-lvl, 0);
@@ -370,9 +370,9 @@ public class OBMobListener implements Listener
 
 
 					    	 
-					    	 if (hit instanceof Player||hit instanceof CraftPlayer)
+					    	 if (hit instanceof Player||hit instanceof Player)
 					    	 {
-						    	 CraftPlayer p = (CraftPlayer)hit;
+						    	 Player p = (Player)hit;
 						    	 
 						    	 
 							     rand = plugin.random_num(20-lvl, 0);
@@ -410,12 +410,12 @@ public class OBMobListener implements Listener
 			    			//player.sendMessage(ChatColor.RED+"Your security status in this city has decreased.");
 			    			player.sendMessage(ChatColor.GOLD+"You are being attacked by Skycraft Citadel Guards!");
 			    			
-			    			CraftCaveSpider zombie = (CraftCaveSpider) player.getWorld().spawnCreature(player.getLocation(), CreatureType.CAVE_SPIDER);
+			    			CaveSpider zombie = (CaveSpider) player.getWorld().spawnCreature(player.getLocation(), CreatureType.CAVE_SPIDER);
 							zombie.setTarget(player);
 							player.damage(10, zombie);
 	
 
-							LGGuard mana_bar = new LGGuard(player, plugin, zombie);
+							OBGuard mana_bar = new OBGuard(player, plugin, zombie);
 							Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 5);
 							
 							
@@ -431,7 +431,7 @@ public class OBMobListener implements Listener
 			 {
 				 if (event.getEntity() instanceof Player)
 				 {
-					 ((CraftPlayer)((((Snowball) damager).getShooter()))).sendMessage(ChatColor.RED+"You cannot capture players!");
+					 ((Player)((((Snowball) damager).getShooter()))).sendMessage(ChatColor.RED+"You cannot capture players!");
 					 event.setCancelled(true);
 				 }
 				 else
@@ -455,7 +455,7 @@ public class OBMobListener implements Listener
 							name = "Enderman";
 						else
 						{
-							((CraftPlayer)((((Snowball) damager).getShooter()))).sendMessage(ChatColor.RED+"You cannot capture this type of creature!");
+							((Player)((((Snowball) damager).getShooter()))).sendMessage(ChatColor.RED+"You cannot capture this type of creature!");
 							 event.setCancelled(true);
 							return;
 						}
@@ -475,7 +475,7 @@ public class OBMobListener implements Listener
 					 //Add the thing to the players list
 				 }
 			 }
-		     else if (damager instanceof Arrow||damager instanceof CraftArrow)
+		     else if (damager instanceof Arrow||damager instanceof Arrow)
 			 {
 		    	 if (event.isCancelled())
 		    		return;
@@ -523,12 +523,12 @@ public class OBMobListener implements Listener
 			    			//player.sendMessage(ChatColor.RED+"Your security status in this city has decreased.");
 			    			player.sendMessage(ChatColor.GOLD+"You are being attacked by Skycraft Citadel Guards!");
 			    			
-			    			CraftCaveSpider zombie = (CraftCaveSpider) player.getWorld().spawnCreature(player.getLocation(), CreatureType.CAVE_SPIDER);
+			    			CaveSpider zombie = (CaveSpider) player.getWorld().spawnCreature(player.getLocation(), CreatureType.CAVE_SPIDER);
 							zombie.setTarget(player);
 							player.damage(10, zombie);
 	
 
-							LGGuard mana_bar = new LGGuard(player, plugin, zombie);
+							OBGuard mana_bar = new OBGuard(player, plugin, zombie);
 							Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 5);
 							
 							
@@ -570,7 +570,7 @@ public class OBMobListener implements Listener
 				     {
 			    		 rand = plugin.random_num(15-lvl, 0);
 			    		 
-			    		 CraftPlayer p = (CraftPlayer)hit;
+			    		 Player p = (Player)hit;
 			    		 if (lvl>20 || (lvl>=3 && rand==0))
 			    		 {
 			    			 if (p.getFoodLevel()>2)

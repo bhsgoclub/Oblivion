@@ -1195,7 +1195,7 @@ public class OBLevels implements CommandExecutor {
 								creature = CreatureType.ENDERMAN;
 							
 							Monster zombie = (Monster) player.getWorld().spawnCreature(player.getLocation().add(0, 1, 0), creature);
-							LGAIZombie mana_bar = new LGAIZombie(player, plugin, zombie);
+							OBAIZombie mana_bar = new OBAIZombie(player, plugin, zombie);
 
 							int timerID = player.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 5);
 							

@@ -576,7 +576,7 @@ public class OBPlayerListener implements Listener
 	    		return;
 	    	}
 	    	
-        	((CraftPlayer)p).getHandle().itemInWorldManager.c(main_block.getX(), main_block.getY(), main_block.getZ());
+        	((Player)p).getHandle().itemInWorldManager.c(main_block.getX(), main_block.getY(), main_block.getZ());
         		
         	transverse-=1;
         	
@@ -650,8 +650,8 @@ public class OBPlayerListener implements Listener
 				int bigChance = (int) (Math.random() * 5 + 1);
 				if (bigChance == 1) {
 					EntityLiving e = null;
-					CraftPlayer craftPlayer = (CraftPlayer) player;
-					CraftWorld craftWorld = (CraftWorld) craftPlayer
+					Player craftPlayer = (Player) player;
+					World craftWorld = (World) craftPlayer
 							.getWorld();
 					Skeleton actual_wolf = (Skeleton) player.getWorld().spawnCreature(player.getLocation(), CreatureType.SKELETON);
 
@@ -757,8 +757,8 @@ public class OBPlayerListener implements Listener
 				int bigChance = (int) (Math.random() * 3 + 1);
 				if (bigChance == 1 || bigChance == 2) {
 					EntityLiving e = null;
-					CraftPlayer craftPlayer = (CraftPlayer) player;
-					CraftWorld craftWorld = (CraftWorld) craftPlayer
+					Player craftPlayer = (Player) player;
+					World craftWorld = (World) craftPlayer
 							.getWorld();
 
 					Squid actual_wolf = (Squid) player.getWorld().spawnCreature(player.getLocation(), CreatureType.SQUID);
@@ -768,8 +768,9 @@ public class OBPlayerListener implements Listener
 					plugin.gainExperience(player, "Fishing", 20);
 				} else {
 					EntityLiving e = null;
-					CraftPlayer craftPlayer = (CraftPlayer) player;
-					CraftWorld craftWorld = (CraftWorld) craftPlayer
+					Player craftPlayer = (
+							Player) player;
+					World craftWorld = (World) craftPlayer
 							.getWorld();
 					Squid actual_wolf = (Squid) player.getWorld().spawnCreature(player.getLocation(), CreatureType.SQUID);
 					player.sendMessage(ChatColor.YELLOW
@@ -1166,14 +1167,14 @@ public class OBPlayerListener implements Listener
 							Block block = p.getTargetBlock(null, 2000);
 		
 							
-							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer(plugin, block.getRelative(0, 1, 0)), 30);
-							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer(plugin, block.getRelative(0, 0, 0)), 40);
+							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer(plugin, block.getRelative(0, 1, 0)), 30);
+							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer(plugin, block.getRelative(0, 0, 0)), 40);
 							
-							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer(plugin, block.getRelative(-1, 1, 1)), 30);
-							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer(plugin, block.getRelative(-1, 0, 1)), 40);
+							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer(plugin, block.getRelative(-1, 1, 1)), 30);
+							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer(plugin, block.getRelative(-1, 0, 1)), 40);
 							
-							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer(plugin, block.getRelative(1, 1, -1)), 30);
-							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGBlockReplacer(plugin, block.getRelative(1, 0, -1)), 40);
+							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer(plugin, block.getRelative(1, 1, -1)), 30);
+							p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBBlockReplacer(plugin, block.getRelative(1, 0, -1)), 40);
 							
 							
 							block.getRelative(0, 0, 0).setType(Material.SAND);
@@ -1317,11 +1318,11 @@ public class OBPlayerListener implements Listener
 				
 								if (plugin.gainMana(p, -44) && zapBlock(block, p, 20))
 						    	{
-									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGZapper(plugin, block, this, p), 0);
-									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGZapper(plugin, block, this, p), 20);
-									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGZapper(plugin, block, this, p), 40);
-									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGZapper(plugin, block, this, p), 60);
-									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new LGZapper(plugin, block, this, p), 80);
+									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBZapper(plugin, block, this, p), 0);
+									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBZapper(plugin, block, this, p), 20);
+									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBZapper(plugin, block, this, p), 40);
+									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBZapper(plugin, block, this, p), 60);
+									p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, new OBZapper(plugin, block, this, p), 80);
 									
 									
 									addBlastZone(p, block.getLocation(), 10, "wraith of the elder sage");
