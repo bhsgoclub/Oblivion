@@ -98,6 +98,7 @@ import com.griefcraft.modules.limits.LimitsModule;
 
 
 public class Oblivion extends JavaPlugin {
+
 	protected static Configuration CONFIG;
 	protected static Configuration STATIC_CONFIG;
 	protected static Configuration SETTLEMENTS;
@@ -1054,6 +1055,7 @@ public class Oblivion extends JavaPlugin {
 		p.sendMessage(ChatColor.YELLOW+"Inventory " +inven_name+" saved.");
 	}
 
+	@SuppressWarnings("deprecation")
 	public void loadInventory(Player p, String inven_name)
 	{
 		
@@ -1975,7 +1977,7 @@ public class Oblivion extends JavaPlugin {
 							int amount = Integer.parseInt(parts[1]);
 							short damage = Short.parseShort(parts[2]);
 							if (type != 0) {
-								chest.setItem(field, new net.minecraft.server.ItemStack(type, amount, damage));
+								chest.setItem(field, new net.minecraft.server.v1_5_R2.ItemStack(type, amount, damage));
 							}
 						} catch (NumberFormatException e) {
 							// ignore
@@ -2011,7 +2013,7 @@ public class Oblivion extends JavaPlugin {
 
 				final BufferedWriter out = new BufferedWriter(new FileWriter(chestFile));
 
-				for (net.minecraft.server.ItemStack stack : chest.getContents()) {
+				for (net.minecraft.server.v1_5_R2.ItemStack stack : chest.getContents()) {
 					if (stack != null)
 						out.write(stack.id + ":" + stack.count + ":" + stack.getData() + "\r\n");
 					else
@@ -2039,14 +2041,14 @@ public class Oblivion extends JavaPlugin {
 		{
 			final InventoryLargeChest chest = chests.get(p.getName().toLowerCase());
 			
-			for (net.minecraft.server.ItemStack stack : chest.getContents())
+			for (net.minecraft.server.v1_5_R2.ItemStack stack : chest.getContents())
 			{
 				if (stack != null)
 					p.getWorld().dropItemNaturally(i, new ItemStack(stack.id, stack.count));
 			}
 			
 			int im = 0;
-			for (net.minecraft.server.ItemStack stack : chest.getContents())
+			for (net.minecraft.server.v1_5_R2.ItemStack stack : chest.getContents())
 			{
 				chest.setItem(im, null);
 				im++;
@@ -2107,7 +2109,7 @@ public class Oblivion extends JavaPlugin {
 		rand = new Random(System.currentTimeMillis());
 		
 
-		// Register our events
+		/* Register our events
 		PluginManager pm = getServer().getPluginManager();
 		pm.registerEvent(Event.Type.PLAYER_JOIN, playerListener,
 				Priority.Normal, this);
@@ -2155,64 +2157,65 @@ public class Oblivion extends JavaPlugin {
 				Priority.Normal, this);
 		pm.registerEvent(Event.Type.CREATURE_SPAWN, mobListener,
 				Priority.Normal, this);
-		
+				Rest in peace old way of doing things
+		*/
 		// onItemSpawn
 		// Register our commands
-		getCommand("level").setExecutor(new LGLevels(this));
-		getCommand("levels").setExecutor(new LGLevels(this));
-		getCommand("resetPlayerName").setExecutor(new LGLevels(this));
-		getCommand("createTask").setExecutor(new LGLevels(this));
-		getCommand("verboseon").setExecutor(new LGLevels(this));
-		getCommand("verboseoff").setExecutor(new LGLevels(this));
-		getCommand("setLevel").setExecutor(new LGLevels(this));
-		getCommand("resetPlayer").setExecutor(new LGLevels(this));
-		getCommand("sendTutorial").setExecutor(new LGLevels(this));
-		getCommand("set").setExecutor(new LGLevels(this));
-		getCommand("who").setExecutor(new LGLevels(this));
-		getCommand("task").setExecutor(new LGLevels(this));
-		getCommand("getLevels").setExecutor(new LGLevels(this));
-		getCommand("setFlag").setExecutor(new LGLevels(this));
-		getCommand("nomad").setExecutor(new LGLevels(this));
-		getCommand("addGuide").setExecutor(new LGLevels(this));
-		getCommand("removeGuide").setExecutor(new LGLevels(this));
-		getCommand("addMod").setExecutor(new LGLevels(this));
-		getCommand("removeMod").setExecutor(new LGLevels(this));
-		getCommand("addLWC").setExecutor(new LGLevels(this));
-		getCommand("shop").setExecutor(new LGLevels(this));
-		getCommand("helmet").setExecutor(new LGLevels(this));
-		getCommand("sneak").setExecutor(new LGLevels(this));
-		getCommand("tell").setExecutor(new LGLevels(this));
-		getCommand("speak").setExecutor(new LGLevels(this));
-		getCommand("minestatus").setExecutor(new LGLevels(this));
-		getCommand("sarah").setExecutor(new LGLevels(this));
-		getCommand("spec").setExecutor(new LGLevels(this));
-		getCommand("pet").setExecutor(new LGLevels(this));
-		//getCommand("teleport").setExecutor(new LGLevels(this));
-		getCommand("citadel").setExecutor(new LGLevels(this));
-		getCommand("resetHouse").setExecutor(new LGLevels(this));
-		getCommand("event").setExecutor(new LGLevels(this));
-		getCommand("ekit").setExecutor(new LGLevels(this));
-		getCommand("lvl").setExecutor(new LGLevels(this));
-		getCommand("exp").setExecutor(new LGLevels(this));
-		getCommand("setEvent").setExecutor(new LGLevels(this));
-		getCommand("c").setExecutor(new LGLevels(this));
-		getCommand("s").setExecutor(new LGLevels(this));
-		getCommand("potion").setExecutor(new LGLevels(this));
-		getCommand("drug").setExecutor(new LGLevels(this));
-		getCommand("pot").setExecutor(new LGLevels(this));
-		getCommand("mirror").setExecutor(new LGLevels(this));
-		getCommand("tutorial").setExecutor(new LGLevels(this));
-		getCommand("admin").setExecutor(new LGLevels(this));
-        getCommand("clone").setExecutor(new LGLevels(this));
+		getCommand("level").setExecutor(new OBLevels());
+		getCommand("levels").setExecutor(new OBLevels());
+		getCommand("resetPlayerName").setExecutor(new OBLevels());
+		getCommand("createTask").setExecutor(new OBLevels());
+		getCommand("verboseon").setExecutor(new OBLevels());
+		getCommand("verboseoff").setExecutor(new OBLevels());
+		getCommand("setLevel").setExecutor(new OBLevels());
+		getCommand("resetPlayer").setExecutor(new OBLevels());
+		getCommand("sendTutorial").setExecutor(new OBLevels());
+		getCommand("set").setExecutor(new OBLevels());
+		getCommand("who").setExecutor(new OBLevels());
+		getCommand("task").setExecutor(new OBLevels());
+		getCommand("getLevels").setExecutor(new OBLevels());
+		getCommand("setFlag").setExecutor(new OBLevels());
+		getCommand("nomad").setExecutor(new OBLevels());
+		getCommand("addGuide").setExecutor(new OBLevels());
+		getCommand("removeGuide").setExecutor(new OBLevels());
+		getCommand("addMod").setExecutor(new OBLevels());
+		getCommand("removeMod").setExecutor(new OBLevels());
+		getCommand("addLWC").setExecutor(new OBLevels());
+		getCommand("shop").setExecutor(new OBLevels());
+		getCommand("helmet").setExecutor(new OBLevels());
+		getCommand("sneak").setExecutor(new OBLevels());
+		getCommand("tell").setExecutor(new OBLevels());
+		getCommand("speak").setExecutor(new OBLevels());
+		getCommand("minestatus").setExecutor(new OBLevels());
+		getCommand("sarah").setExecutor(new OBLevels());
+		getCommand("spec").setExecutor(new OBLevels());
+		getCommand("pet").setExecutor(new OBLevels());
+		//getCommand("teleport").setExecutor(new OBLevels());
+		getCommand("citadel").setExecutor(new OBLevels());
+		getCommand("resetHouse").setExecutor(new OBLevels());
+		getCommand("event").setExecutor(new OBLevels());
+		getCommand("ekit").setExecutor(new OBLevels());
+		getCommand("lvl").setExecutor(new OBLevels());
+		getCommand("exp").setExecutor(new OBLevels());
+		getCommand("setEvent").setExecutor(new OBLevels());
+		getCommand("c").setExecutor(new OBLevels());
+		getCommand("s").setExecutor(new OBLevels());
+		getCommand("potion").setExecutor(new OBLevels());
+		getCommand("drug").setExecutor(new OBLevels());
+		getCommand("pot").setExecutor(new OBLevels());
+		getCommand("mirror").setExecutor(new OBLevels());
+		getCommand("tutorial").setExecutor(new OBLevels());
+		getCommand("admin").setExecutor(new OBLevels());
+        getCommand("clone").setExecutor(new OBLevels());
 		getCommand("town").setExecutor(new SaCommands(this));
 		getCommand("setSettlementFlag").setExecutor(new SaCommands(this));
 		getCommand("resetSettlement").setExecutor(new SaCommands(this));
 		
-		getCommand("mkick").setExecutor(new LGLevels(this));
-		getCommand("mban").setExecutor(new LGLevels(this));
-		getCommand("munban").setExecutor(new LGLevels(this));
-		getCommand("mtp").setExecutor(new LGLevels(this));
-		getCommand("mspawn").setExecutor(new LGLevels(this));
+		getCommand("mkick").setExecutor(new OBLevels());
+		getCommand("mban").setExecutor(new OBLevels());
+		getCommand("munban").setExecutor(new OBLevels());
+		getCommand("mtp").setExecutor(new OBLevels());
+		getCommand("mspawn").setExecutor(new OBLevels());
 
 		// EXAMPLE: Custom code, here we just output some info so we can check
 		// all is well
@@ -2220,11 +2223,11 @@ public class Oblivion extends JavaPlugin {
 		System.out.println(pdfFile.getName() + " version "
 				+ pdfFile.getVersion() + " is enabled!");
 
-		LGAutoSave autosave = new LGAutoSave(this);
+		OBAutoSave autosave = new OBAutoSave(this);
 		Bukkit.getServer().getScheduler()
 				.scheduleSyncRepeatingTask(this, autosave, 6000, 6000);
 
-		LGProtip protip = new LGProtip(this);
+		OBProtip protip = new OBProtip(this);
 		Bukkit.getServer().getScheduler()
 				.scheduleSyncRepeatingTask(this, protip, 0, 36000);
 		
@@ -2258,11 +2261,11 @@ public class Oblivion extends JavaPlugin {
 		for (Player player : Bukkit.getServer().getOnlinePlayers()) {
 			updateName(player);
 
-			LGManaBar mana_bar = new LGManaBar(player, this);
+			OBManaBar mana_bar = new OBManaBar(player, this);
 			int timerID = player.getServer().getScheduler().scheduleSyncRepeatingTask(this, mana_bar, 50, 50);
 			playerConfig(player).setProperty("manaTimer", timerID);
 			
-			LGSprinter sprint = new LGSprinter(player, this);
+			OBSprinter sprint = new OBSprinter(player, this);
 			
 			
 			int staminaBoosts = playerConfig(player).getInt("staminaBoost", 0);
@@ -2290,13 +2293,13 @@ public class Oblivion extends JavaPlugin {
 		}
 
 		Bukkit.getServer().broadcastMessage(
-				ChatColor.YELLOW + "Loaded: Legends, beta 1.02");
+				ChatColor.YELLOW + "Loaded: Oblivion, Alpha 0.01");
 		Bukkit.getServer()
 				.broadcastMessage(
 						ChatColor.RED
 								+ "[Protip]"
 								+ ChatColor.YELLOW
-								+ " Post on minecraftforum and more players will join the server! Go to http:/tinyurl.com/skycraft4. You may receive a free golden apple from ShadovvMoon for your troubles!");
+								+ " Will add this when its time");
 
 
 	}
