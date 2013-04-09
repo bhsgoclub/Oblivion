@@ -84,7 +84,7 @@ public class OBPlayerListener implements Listener
 	        plugin = instance;
 	    }
 
-	    @Override
+	    //@Override
 	    public void onPlayerJoin(PlayerJoinEvent event)
 	    {
 	    	
@@ -234,7 +234,7 @@ public class OBPlayerListener implements Listener
 	    		*/
 	    }
 	    
-		 @Override
+		 //@Override
 		 public void onPlayerRespawn(PlayerRespawnEvent event)
 		 {
 			// Player p = (Player)event.getPlayer();
@@ -243,7 +243,7 @@ public class OBPlayerListener implements Listener
 			 //p.setHealth((int)(20/(20/(20+health_level*5))));
 		 }
 
-	    @Override
+	    //@Override
 	    public void onPlayerQuit(PlayerQuitEvent event)
 	    {
 	    	int timerID = plugin.playerConfig(event.getPlayer()).getInt("manaTimer", 0);
@@ -267,7 +267,7 @@ public class OBPlayerListener implements Listener
 	         }
 	    }
 
-	    @Override
+	    //@Override
 	    public void onPlayerMove(PlayerMoveEvent event)
 	    {
 	    	
@@ -625,7 +625,7 @@ public class OBPlayerListener implements Listener
 	    }
 	    
 	    
-	    @Override
+	    //@Override
 	    public void onPlayerFish(PlayerFishEvent event)
 	    {
 	    	Player player = event.getPlayer();
@@ -1882,7 +1882,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    }
 	    
 	    
-	    @Override
+	    //@Override
 	    public void onPlayerChat(PlayerChatEvent event)
 	    {
 	    	
@@ -2355,7 +2355,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    }
 	    
 	  
-	    @Override
+	    //@Override
 	    public void onPlayerDropItem(PlayerDropItemEvent event)
 	    {
 	    	if (event.getItemDrop().getItemStack().getTypeId()==36)
@@ -2369,7 +2369,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    	}
 	    }
 	    
-	    @Override
+	    //@Override
 	    public void onPlayerPickupItem(PlayerPickupItemEvent event)
 	    {
 	    	int amount = 0;
@@ -2398,7 +2398,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    	
 	    }
 	    
-	    @Override
+	    //@Override
 	    public void onPlayerInteract(PlayerInteractEvent event)
 	    {
 
@@ -3181,7 +3181,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		
 			        		int ti2merID = plugin.playerConfig(event.getPlayer()).getInt("sprintTimer", 0);
 			    	    	event.getPlayer().getServer().getScheduler().cancelTask(ti2merID);
-			    	    	OBSprinter sprint = new LGSprinter(event.getPlayer(), plugin);
+			    	    	OBSprinter sprint = new OBSprinter(event.getPlayer(), plugin);
 			    	    	
 			    	    	int stam = plugin.skillLevel(event.getPlayer(), "Sprint");
 			    			int boost = stam*3;
@@ -3566,7 +3566,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    
 	    
 
-	    @Override
+	    //@Override
 	    public void onItemHeldChange(PlayerItemHeldEvent event)
 	    {
 	    	
@@ -3621,7 +3621,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    
 	    
 	    
-		 @Override
+		 //@Override
 		 public void onPlayerInteractEntity(PlayerInteractEntityEvent event)
 		 {
 			 

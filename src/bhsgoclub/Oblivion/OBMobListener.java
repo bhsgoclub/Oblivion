@@ -39,7 +39,7 @@ public class OBMobListener implements Listener
 	     plugin = instance;
 	 }
 	 
-	 @Override
+	 //@Override
 	 public void onItemSpawn(ItemSpawnEvent event)
 	 {
 		 
@@ -58,7 +58,7 @@ public class OBMobListener implements Listener
 	 }
 	 
 		
-	@Override
+	//@Override
 	public void onCreatureSpawn(CreatureSpawnEvent event)
 	{
 		Entity e = event.getEntity();
@@ -70,7 +70,7 @@ public class OBMobListener implements Listener
 		}
 	}
 	 
-	@Override
+	//@Override
 	public void onProjectileHit(ProjectileHitEvent event)
 	{
 		Entity shooter = null;
@@ -198,7 +198,7 @@ public class OBMobListener implements Listener
     	int timerID = p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, mana_bar, 20*seconds);
     }
     
-	 @Override
+	 //@Override
 	 public void onEntityDamage(EntityDamageEvent event)
 	 {
 		 if (event.isCancelled())
@@ -668,12 +668,12 @@ public class OBMobListener implements Listener
 
 	 
 
-	 @Override
+	 //@Override
 	 public void onEntityRegainHealth(EntityRegainHealthEvent event)
 	 {
 	 }
 	 
-	 @Override
+	 //@Override
 	 public void onEntityDeath(EntityDeathEvent damage_event)
 	 {
 		 

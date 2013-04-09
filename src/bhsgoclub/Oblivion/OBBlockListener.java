@@ -531,7 +531,7 @@ public class OBBlockListener implements Listener
     	}
     }
     
-    @Override
+    //@Override
     public void onBlockPhysics(BlockPhysicsEvent event) {
         Block block = event.getBlock();
 
@@ -543,7 +543,7 @@ public class OBBlockListener implements Listener
         }
     }
 
-    @Override
+    //@Override
     public void onBlockCanBuild(BlockCanBuildEvent event) {
         Material mat = event.getMaterial();
 
@@ -552,7 +552,7 @@ public class OBBlockListener implements Listener
         }
     }
     
-    @Override
+    //@Override
     public void onBlockPlace(BlockPlaceEvent event)
     {
     	
@@ -647,7 +647,7 @@ public class OBBlockListener implements Listener
     	spadeBlock(main_block.getRelative(-1, 0, -1), p);
     }
     
-    @Override
+    //@Override
     public void onBlockRedstoneChange(BlockRedstoneEvent event)
     {
     	
@@ -1109,7 +1109,7 @@ public class OBBlockListener implements Listener
 			 }
 
 	 }
-    @Override
+    //@Override
     public void onBlockBreak(BlockBreakEvent event)
     {
     	
