@@ -1076,7 +1076,7 @@ public class SaCommands implements CommandExecutor
 
 			    	        		    		DefaultDomain mems = new DefaultDomain();
 			    	        		    		
-			    	        		    		RegionCommands r = new RegionCommands();
+			    	        		    		RegionCommands r = new RegionCommands(worldGuard);
 
 			    	        		    		new_protection.setFlag(DefaultFlag.PVP, State.ALLOW);
 			    	        		    		new_protection.setFlag(DefaultFlag.CHEST_ACCESS, State.ALLOW);
