@@ -2061,7 +2061,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		    			else if (((pw.contains("your")||pw.contains("ur")) &&(wrd.contains("stupid")||wrd.contains("dumb"))))
 		    			{
 		    				requested_item = "stupid";
-		    				botReply("Sorry ;( I'm still fairly young.:ShadovvMoon and Bhsgoclub has only given me limited inteligence. Sorry ;(:Thats mean ;(:;(:Sry <name>. I can't help it.", event.getPlayer());
+		    				botReply("Sorry ;( I'm still fairly young.:bhsgoclub has only given me limited inteligence. Sorry ;(:Thats mean ;(:;(:Sry <name>. I can't help it.", event.getPlayer());
 		    				
 		    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "stupid");
 		    			}
@@ -2108,7 +2108,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    			if ((bm.contains("why")||(pw.contains("your")||pw.contains("ur"))&&wrd.contains("master")) && requested_item.equalsIgnoreCase("marry"))
 	    			{
 	    				requested_item = "master";
-	    				botReply("ShadovvMoon:ShadovvMoon is my master:I was created by ShadovvMoon:Shadovv ;)", event.getPlayer());
+	    				botReply("bhsgoclub:bhsgoclub is my master:I was created by bhsgoclub:bhsgoclub that other guy is long gone. ;)", event.getPlayer());
 	    				
 	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "master");
 	    				break;
@@ -2117,7 +2117,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    			if (bm.contains("can") && bm.contains("i") && bm.contains("get") && bm.contains("items"))
 	    			{
 	    				requested_item = "items";
-	    				botReply("Sorry, I'm not allowed to spawn items:Shadovv doesnt let me spawn items sry:I cant do that sorry ;(", event.getPlayer());
+	    				botReply("Sorry, I'm not allowed to spawn items:bhs doesnt let me spawn items sry:I cant do that sorry ;(", event.getPlayer());
 	    				
 	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "items");
 	    				break;
@@ -2173,18 +2173,24 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    			else if (pw.contains("im")&&wrd.contains("new"))
 	    			{
 	    				requested_item = "";
-	    				botReply("Welcome to Skycraft, <name>. If you need help, just ask me.", event.getPlayer());
+	    				botReply("Welcome to the server, <name>. If you need help, just ask me.", event.getPlayer());
 	    			
 	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
 	    			}
-	    			
-	    			
 	    			
 	    			if (wrd.contains("tutorial") && requested_item.equalsIgnoreCase("stuck"))
 	    			{
 	    				requested_item = "tutorial";
 	    				botReply("To progress to the training room, throw dirt on the pressure plate. You get dirt from the other side of the room by right clicking on a sign.", event.getPlayer());
 	    				
+	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    			}
+	    			
+	    			if (wrd.contains("Michael") && requested_item.equalsIgnoreCase("suck"))
+	    			{
+	    				requested_item = "tutorial";
+	    				botReply("Dont insult my master.:Most likely better then you will ever.:Dont be so jelous of his abbilitys ;)", event.getPlayer());
+	    				//just for Chloe Other coders working on this, dont ask lol
 	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
 	    			}
 	    			else if (wrd.contains("dungeon") && requested_item.equalsIgnoreCase("stuck"))
@@ -2273,7 +2279,8 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    			
 	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "suicide");
 	    			}
-	    			
+	    			if (wrd.contains("tutorial") && requested_item.equalsIgnoreCase("stuck"))
+	    	
 	    			ppppppw = ppppw;
 	    			pppppw = ppppw;
 	    			ppppw = pppw;
