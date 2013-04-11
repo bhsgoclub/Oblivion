@@ -21,7 +21,7 @@ public class OBBino implements Runnable
     	String binoculars = plugin.playerConfig(this.player).getString("Binoculars", "");
     	if (binoculars.equalsIgnoreCase("true"))
     	{
-    		EventHandler eplayer = ((Object) (CraftPlayer)this.player).getHandle();
+    		EventHandler eplayer = (EventHandler) ((CraftPlayer) (CraftPlayer)this.player).getHandle();
     		plugin.doEffect(eplayer, 2, (float)10.0, 11);
     	}
     	else

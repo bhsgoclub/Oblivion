@@ -1,11 +1,6 @@
 package bhsgoclub.Oblivion;
-import java.util.List;
-
 import org.bukkit.Location;
-import org.bukkit.Material;
-import org.bukkit.block.Block;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.*;
 
 public class CitadelTeleport implements Runnable
 {
@@ -24,7 +19,7 @@ public class CitadelTeleport implements Runnable
         //do your stuff here
     	this.player.teleport(new Location(this.player.getWorld(), 66, 80, 263));
     	
-    	plugin.playerConfig(player).setProperty("lastCitadelTiming", String.valueOf(System.currentTimeMillis()));
+    	((ConfigUtil) plugin.playerConfig(player)).setProperty("lastCitadelTiming", String.valueOf(System.currentTimeMillis()));
 
     }
 }

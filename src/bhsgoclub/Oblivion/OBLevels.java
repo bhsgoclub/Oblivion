@@ -16,6 +16,8 @@ import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import bhsgoclub.Oblivion.ConfigUtil;
+
 public class OBLevels implements CommandExecutor {
 	private Oblivion plugin;
 
@@ -99,7 +101,7 @@ public class OBLevels implements CommandExecutor {
 				return false;
 			}
 			Player player = (Player) sender;
-			plugin.playerConfig(player).setProperty("DisplayCoords", "YES");
+			((ConfigUtil) plugin.playerConfig(player)).setProperty("DisplayCoords", "YES");
 
 			player.sendMessage(ChatColor.GREEN
 					+ "Click the block to display coordinates.");
@@ -111,7 +113,7 @@ public class OBLevels implements CommandExecutor {
 			Player player = (Player) sender;
 			player.sendMessage(ChatColor.YELLOW
 					+ "Now displaying experience and mana gains.");
-			plugin.playerConfig(player).setProperty("verbose", "on");
+			((Oblivion) plugin.playerConfig(player)).setProperty("verbose", "on");
 		} else if (cmd.equalsIgnoreCase("verboseoff")) {
 			if (!(sender instanceof Player)) {
 				return false;

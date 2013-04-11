@@ -594,7 +594,7 @@ public class OBBlockListener implements Listener
         
         
         String coords = String.format("%d %d %d", (int)event.getBlock().getLocation().getX(), (int)event.getBlock().getLocation().getY(), (int)event.getBlock().getLocation().getZ());
-        plugin.getBlocks().setProperty(coords, String.valueOf(System.currentTimeMillis()));
+        ((ConfigUtil) plugin.getBlocks()).setProperty(coords, String.valueOf(System.currentTimeMillis()));
 		
 //getBlocks()
         
@@ -1434,7 +1434,7 @@ public class OBBlockListener implements Listener
         
         
         String coords2 = String.format("%d %d %d", (int)event.getBlock().getLocation().getX(), (int)event.getBlock().getLocation().getY(), (int)event.getBlock().getLocation().getZ());
-        plugin.getBlocks().setProperty(coords2, "0");
+        ((ConfigUtil) plugin.getBlocks()).setProperty(coords2, "0");
     }
     
 

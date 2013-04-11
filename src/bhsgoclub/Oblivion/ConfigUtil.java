@@ -86,5 +86,15 @@ public class ConfigUtil {
             this.plugin.saveResource(fileName, false);
         }
     }
+
+	public void setProperty(String string, int state) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void setProperty(String string, String valueOf) {
+		// TODO Auto-generated method stub
+		
+	}
  
 }

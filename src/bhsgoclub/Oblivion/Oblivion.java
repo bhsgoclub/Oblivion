@@ -40,6 +40,7 @@ import org.bukkit.World;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.*;
 import org.bukkit.craftbukkit.v1_5_R2.entity.CraftBlaze;
 import org.bukkit.craftbukkit.v1_5_R2.entity.CraftChicken;
 import org.bukkit.craftbukkit.v1_5_R2.entity.CraftCow;
@@ -95,6 +96,8 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import com.griefcraft.lwc.LWC;
 import com.griefcraft.modules.limits.LimitsModule;
+
+import bhsgoclub.Oblivion.ConfigUtil;
 
 
 public class Oblivion extends JavaPlugin {
@@ -446,7 +449,7 @@ public class Oblivion extends JavaPlugin {
 				//The player save is missing! D:
 				File statics = new File("Players/"+player_name+ ".yml");
 		
-				playerData = new Configuration(statics);
+				playerData = Configuration(statics);
 				((Oblivion) playerData).load();
 				
 				Player_Saves.put(player_name, playerData); //Add the data to the dictionary!
@@ -458,6 +461,11 @@ public class Oblivion extends JavaPlugin {
 
 	}
 	
+	private Configuration Configuration(File statics) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 	public void saveData(String player_name)
 	{
 
@@ -475,7 +483,7 @@ public class Oblivion extends JavaPlugin {
 		Configuration config = (Configuration) Player_Saves.get(player_name);
 			if (config != null)
 			{
-				config.save();
+				((Oblivion) config).save();
 				Player_Saves.remove(config); //Close the data. We shouldn't need it anymore ;)
 				
 				System.out.println("Removing save data for " + player_name);
@@ -592,7 +600,7 @@ public class Oblivion extends JavaPlugin {
 		if (verbosePlayer(player))
 			player.sendMessage(ChatColor.YELLOW + "Energy: [" + bar + "]");
 
-		playerConfig(display_name).setProperty("energy", exp);
+		((Oblivion) playerConfig(display_name)).setProperty("energy", exp);
 
 		if (mana_amount < 0)
 			player.getWorld().playEffect(player.getLocation(),
@@ -600,7 +608,12 @@ public class Oblivion extends JavaPlugin {
 
 		return true;
 	}
-    public static void removeInventoryItems(Inventory inv, Material type, int amount) {
+    void setProperty(String string, int exp) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public static void removeInventoryItems(Inventory inv, Material type, int amount) {
         for (ItemStack is : inv.getContents()) {
             if (is != null && is.getType() == type) {
                 int newamount = is.getAmount() - amount;
@@ -757,7 +770,7 @@ public class Oblivion extends JavaPlugin {
 											.equalsIgnoreCase("finished")
 											|| Integer.valueOf(creative_task) <= 0) {
 										// Do nothing
-										playerConfig(p)
+										((Oblivion) playerConfig(p))
 												.setProperty( getTasks()
 																		.getString(
 																				"Tasks."
@@ -806,7 +819,7 @@ public class Oblivion extends JavaPlugin {
 											}
 										}
 									} else
-										playerConfig(p)
+										((Oblivion) playerConfig(p))
 												.setProperty(getTasks()
 																		.getString(
 																				"Tasks."
@@ -822,7 +835,7 @@ public class Oblivion extends JavaPlugin {
 																	+ ".set")
 											+ " task - Remaining kills: "
 											+ String.valueOf(remaining_kills));
-									playerConfig(p).setProperty(getTasks().getString(
+									((Oblivion) playerConfig(p)).setProperty(getTasks().getString(
 															"Tasks." + coords2
 																	+ ".set")
 													+ ".Kill",
@@ -835,7 +848,7 @@ public class Oblivion extends JavaPlugin {
 			}
 		}
 	}
-	
+
 	public void monsterKilled(Entity e, Player p) {
 		
 		if (!(e instanceof Player))
@@ -2069,7 +2082,7 @@ public class Oblivion extends JavaPlugin {
 
 		File statics = new File("settlements_config.yml");
 
-		SETTLEMENTS = new Configuration(statics);
+		SETTLEMENTS = new FileConfiguration(statics);
 		((Oblivion) SETTLEMENTS).load();
 		
 		
@@ -2258,7 +2271,7 @@ public class Oblivion extends JavaPlugin {
 
 			OBManaBar mana_bar = new OBManaBar(player, this);
 			int timerID = player.getServer().getScheduler().scheduleSyncRepeatingTask(this, mana_bar, 50, 50);
-			playerConfig(player).setProperty("manaTimer", timerID);
+			((Oblivion) playerConfig(player)).setProperty("manaTimer", timerID);
 			
 			OBSprinter sprint = new OBSprinter(player, this);
 			
@@ -2271,7 +2284,7 @@ public class Oblivion extends JavaPlugin {
 			
 			timerID = player.getServer().getScheduler().scheduleSyncRepeatingTask(this, sprint, 10*staminaBoosts+boost, 10*staminaBoosts+boost);
 			
-			playerConfig(player).setProperty( "sprintTimer", timerID);
+			((Oblivion) playerConfig(player)).setProperty( "sprintTimer", timerID);
 			
 		}
 
@@ -2413,6 +2426,12 @@ public class Oblivion extends JavaPlugin {
 				timer.cancel(); // Terminate the timer thread
 			}
 		}
+	}
+
+
+	public void setProperty(String string, String string2) {
+		// TODO Auto-generated method stub
+		
 	}
 		
 		

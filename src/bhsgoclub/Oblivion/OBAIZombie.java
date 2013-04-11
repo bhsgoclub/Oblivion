@@ -171,7 +171,7 @@ public class OBAIZombie implements Runnable
     		}
     			
     	}
-    	plugin.playerConfig(player).setProperty("PetState", this.state);
+    	((ConfigUtil) plugin.playerConfig(player)).setProperty("PetState", this.state);
  	
     	//Who hurt master? D:
     	
