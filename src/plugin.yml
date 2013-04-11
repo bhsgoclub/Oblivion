@@ -1,7 +1,7 @@
 name: Oblivion
 main: bhsgoclub.Oblivion.Oblivion
 version: 1.0
-depend: [WorldGuard, PermissionsBukkit, iConomy]
+depend: [WorldGuard, WorldEdit, LWC, Vault]
 commands:
     level:
         description: Display your current levels
@@ -157,7 +157,7 @@ commands:
         description: Mirror an annoying player
         usage: /minestatus
     clone:
-        description: Create a clone of a player (Added 10/1/12, ShadovvMoon)
+        description: Create a clone of a player
         usage: /clone
     setSettlementFlag:
         description: The setSettlementFlag command. I'm not writing a friggin description >_>
