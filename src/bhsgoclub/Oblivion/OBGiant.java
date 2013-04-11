@@ -39,7 +39,7 @@ public class OBGiant implements Runnable
     	ai_player.getWorld().playEffect(ai_player.getLocation(), Effect.SMOKE, 3);
     	ai_player.getWorld().createExplosion(ai_player.getLocation(), 0);
 		
-    	List<Entity> list = ai_player.getNearbyEntities(8, 8, 8);
+    	List<Entity> list = ai_player.getNearbyEntities(10, 10, 10);
     	
     	int i;
     	for (i=0; i < list.size(); i++)
@@ -50,7 +50,7 @@ public class OBGiant implements Runnable
     			if (e instanceof Player || e instanceof Player)
     			{
     				LivingEntity en = (LivingEntity)e;
-    				en.damage(4, ai_player);
+    				en.damage(10, ai_player);
     			}
     		}
     	}

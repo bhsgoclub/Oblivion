@@ -30,7 +30,7 @@ public class OBProtip implements Runnable
     	
     	if (ptip == 1)
     	{
-    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Got a gray/grey name? Apply on the forums (tinyurl.com/skycraft4) and receive your citizenship!");
+    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Got a gray/grey name? Apply on the forums (Link) and receive your citizenship!");
     	}
     	else if (ptip == 2)
     	{
@@ -54,7 +54,7 @@ public class OBProtip implements Runnable
     	}
     	else if (ptip == 7)
     	{
-    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Hey and welcome to the new SKYCRAFT run by bhsgoclub");
+    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Hey and welcome to the new (server name goes here) run by Plasimus");
     	}
     	else if (ptip == 8)
     	{
@@ -62,7 +62,7 @@ public class OBProtip implements Runnable
     	}
     	else if (ptip == 9)
     	{
-    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"There are many exits from Ze'thur.");
+    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"There are many exits from (spawn name).");
     	}
     	else if (ptip == 10)
     	{
@@ -70,11 +70,11 @@ public class OBProtip implements Runnable
     	}
     	else if (ptip == 11)
     	{
-    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Use the citadel perk to instantly be teleported to spawn. It can be purchased from bhs.");
+    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Use the citadel perk to instantly be teleported to spawn. It can be purchased from Plas.");
     	}
     	else if (ptip == 12)
     	{
-    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Use the music perk to create song detectors! It can be purchased from bhs.");
+    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Use the music perk to create song detectors! It can be purchased from Plas.");
     	}
     	else if (ptip == 13)
     	{
@@ -82,7 +82,7 @@ public class OBProtip implements Runnable
     	}
     	else if (ptip == 14)
     	{
-    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"If you happy and you know it say huza.");
+    		Bukkit.getServer().broadcastMessage(ChatColor.RED+"[Protip]"+ChatColor.YELLOW+"Kill me, and Yes do not go together, trust me.");
     		ptip = 0;
     	}
     	
