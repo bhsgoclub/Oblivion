@@ -88,7 +88,7 @@ public class OBProtip implements Runnable
     	
     	
     	
-    	plugin.getCon().setProperty("CurrentProtip", ptip+1);
+    	((Oblivion) plugin.getCon()).setProperty("CurrentProtip", ptip+1);
     	
     	 }
 }

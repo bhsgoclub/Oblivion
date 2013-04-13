@@ -122,7 +122,7 @@ public class OBLevels implements CommandExecutor {
 
 			player.sendMessage(ChatColor.YELLOW
 					+ "No longer displaying experience and mana gains.");
-			plugin.playerConfig(player).setProperty("verbose", "off");
+			((Oblivion) plugin.playerConfig(player)).setProperty("verbose", "off");
 		} else if (cmd.equalsIgnoreCase("setLevel")) {
 			if (!(sender instanceof Player)) {
 				return false;
@@ -137,7 +137,7 @@ public class OBLevels implements CommandExecutor {
 				Player p = getPlayer(player.getWorld(), player_name);
 
 				if (p != null) {
-					plugin.playerConfig(p).setProperty(skill_name + ".level",
+					((Oblivion) plugin.playerConfig(p)).setProperty(skill_name + ".level",
 							Integer.valueOf(level));
 				}
 			}
@@ -175,7 +175,7 @@ public class OBLevels implements CommandExecutor {
 					for (g = 0; g < skills.size(); g++) {
 						String skill_name = skills.get(g);
 
-						plugin.playerConfig(p).setProperty(skill_name
+						((Oblivion) plugin.playerConfig(p)).setProperty(skill_name
 										+ ".experience", 0);
 						plugin.playerConfig(p).setProperty( skill_name
 										+ ".level", 0);

@@ -81,12 +81,12 @@ public class SaCommands implements CommandExecutor
 					if (channel.equalsIgnoreCase("public"))
 					{
 						player.sendMessage(ChatColor.YELLOW+"Switched to public chat.");
-						plugin.playerConfig(player).setProperty("CHATCHANNEL", "PUBLIC");
+						((Oblivion) plugin.playerConfig(player)).setProperty("CHATCHANNEL", "PUBLIC");
 					}
 					else if (channel.equalsIgnoreCase("private"))
 					{
 						player.sendMessage(ChatColor.YELLOW+"Switched to town chat.");
-						plugin.playerConfig(player).setProperty("CHATCHANNEL", "PRIVATE");
+						((Oblivion) plugin.playerConfig(player)).setProperty("CHATCHANNEL", "PRIVATE");
 					}
 					else
 					{
@@ -364,7 +364,7 @@ public class SaCommands implements CommandExecutor
 			        		        		}
 			        		    		}
 
-			        	    			plugin.getSettle().setProperty("Settlements."+houseID+".Players."+invited, "Leader");
+			        	    			((Oblivion) plugin.getSettle()).setProperty("Settlements."+houseID+".Players."+invited, "Leader");
 			        	    		}
 			        			}
 					    	}
@@ -462,7 +462,7 @@ public class SaCommands implements CommandExecutor
 			        		    		}
 			        		        	
 			        	    			
-			        	    			plugin.getSettle().setProperty("Settlements."+houseID+".Players."+invited, "Member");
+			        	    			((Oblivion) plugin.getSettle()).setProperty("Settlements."+houseID+".Players."+invited, "Member");
 			        	    		}
 			        			}
 					    	}
@@ -541,7 +541,7 @@ public class SaCommands implements CommandExecutor
 								
 								sender.sendMessage(ChatColor.GREEN+"You have invited " + g.getName()+" to join " + houseID);
 								
-								plugin.getSettle().setProperty(g.getName()+".invitations."+houseID, "true");
+								((Oblivion) plugin.getSettle()).setProperty(g.getName()+".invitations."+houseID, "true");
 							}
 							else
 								player.sendMessage(ChatColor.RED+"That player is not currently online.");
@@ -688,8 +688,8 @@ public class SaCommands implements CommandExecutor
 							    		region2.setMembers(mems);
 						    		}
 						    		
-						    		plugin.getSettle().setProperty(invited+".houseID", "");
-						    		plugin.getSettle().removeProperty("Settlements."+settlement_name+".Players."+invited);
+						    		((Oblivion) plugin.getSettle()).setProperty(invited+".houseID", "");
+						    		((Oblivion) plugin.getSettle()).removeProperty("Settlements."+settlement_name+".Players."+invited);
 						    		
 									the_sign.setLine(3, String.format("%d/%d", members, required));
 									the_sign.update();
@@ -723,12 +723,12 @@ public class SaCommands implements CommandExecutor
 						        		for (i=0; i < players.size(); i++)
 						        		{
 						        			String name = players.get(i);
-						        			plugin.getSettle().setProperty(name+".houseID", "");
+						        			((Oblivion) plugin.getSettle()).setProperty(name+".houseID", "");
 						        		}
 						    		}
 						        	
-						        	plugin.getSettle().setProperty(the_sign.getLine(2)+".houseID", "");
-						    		plugin.getSettle().removeProperty("Settlements."+the_sign.getLine(2));
+						        	((Oblivion) plugin.getSettle()).setProperty(the_sign.getLine(2)+".houseID", "");
+						    		((Oblivion) plugin.getSettle()).removeProperty("Settlements."+the_sign.getLine(2));
 				
 						        	//event.getPlayer().sendMessage(ChatColor.YELLOW+"Settlement deleted.");
 						    		Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+settlement_name+" has been deleted due to lack of members.");
@@ -845,7 +845,7 @@ public class SaCommands implements CommandExecutor
 								
 								
 								
-								plugin.getSettle().removeProperty(player_name+".invitations."+invited);
+								((Oblivion) plugin.getSettle()).removeProperty(player_name+".invitations."+invited);
 								
 								
 								
@@ -864,8 +864,8 @@ public class SaCommands implements CommandExecutor
 			    	        			{
 			    		    				player.sendMessage(ChatColor.YELLOW+"You have joined this settlement!");
 			    		    				
-			    		    				plugin.getSettle().setProperty("Settlements."+invited+".Players."+player.getName(), "Member");
-			    		    				plugin.getSettle().setProperty(player.getName()+".houseID", invited);
+			    		    				((Oblivion) plugin.getSettle()).setProperty("Settlements."+invited+".Players."+player.getName(), "Member");
+			    		    				((Oblivion) plugin.getSettle()).setProperty(player.getName()+".houseID", invited);
 
 			    	        				String[] crds = center_loc.split(" ");
 			    	        				Location settlement_loc = new Location(player.getWorld(), Integer.valueOf(crds[0]), Integer.valueOf(crds[1]), Integer.valueOf(crds[2]));
@@ -904,7 +904,7 @@ public class SaCommands implements CommandExecutor
 			    	        				{
 			    	        					
 			    	        					String type = plugin.getSettle().getString("Settlements."+invited+".Type", "");
-			    	        					plugin.getSettle().setProperty("Settlements."+invited+".Active", "YES");
+			    	        					((Oblivion) plugin.getSettle()).setProperty("Settlements."+invited+".Active", "YES");
 			    	        					
 			    	        					if (type.equalsIgnoreCase("[Settlement]"))
 			    	        						Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+invited+" has setup a new settlement!");
@@ -1305,8 +1305,8 @@ public class SaCommands implements CommandExecutor
 										    		region2.setMembers(mems);
 									    		}
 									    		
-									    		plugin.getSettle().setProperty(player.getName()+".houseID", "");
-									    		plugin.getSettle().removeProperty("Settlements."+settlement_name+".Players."+player.getName());
+									    		((Oblivion) plugin.getSettle()).setProperty(player.getName()+".houseID", "");
+									    		((Oblivion) plugin.getSettle()).removeProperty("Settlements."+settlement_name+".Players."+player.getName());
 									    		
 												the_sign.setLine(3, String.format("%d/%d", members, required));
 												the_sign.update();
@@ -1364,12 +1364,12 @@ public class SaCommands implements CommandExecutor
 									        		for (i=0; i < players.size(); i++)
 									        		{
 									        			String name = players.get(i);
-									        			plugin.getSettle().setProperty(name+".houseID", "");
+									        			((Oblivion) plugin.getSettle()).setProperty(name+".houseID", "");
 									        		}
 									    		}
 									        	
-									        	plugin.getSettle().setProperty(the_sign.getLine(2)+".houseID", "");
-									    		plugin.getSettle().removeProperty("Settlements."+the_sign.getLine(2));
+									        	((Oblivion) plugin.getSettle()).setProperty(the_sign.getLine(2)+".houseID", "");
+									    		((Oblivion) plugin.getSettle()).removeProperty("Settlements."+the_sign.getLine(2));
 							
 									        	//event.getPlayer().sendMessage(ChatColor.YELLOW+"Settlement deleted.");
 									    		Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+settlement_name+" has been deleted due to lack of members.");
@@ -1424,7 +1424,7 @@ public class SaCommands implements CommandExecutor
 				 return false;
 			 
 			 Player player = (Player)sender;
-			 plugin.getSettle().setProperty(split[0], split[1]);
+			 ((Oblivion) plugin.getSettle()).setProperty(split[0], split[1]);
 			 
 			 
 		 }
@@ -1440,7 +1440,7 @@ public class SaCommands implements CommandExecutor
 			 {
 				 if (player.isOp())
 				 {
-					 plugin.getSettle().setProperty(p.getName()+".houseID", "");
+					 ((Oblivion) plugin.getSettle()).setProperty(p.getName()+".houseID", "");
 				 }
 			 }
 			 else

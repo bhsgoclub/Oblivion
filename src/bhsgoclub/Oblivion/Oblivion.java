@@ -1004,7 +1004,7 @@ public class Oblivion extends JavaPlugin {
 			level += 1;
 			exp = exp - exp_required;
 
-			playerConfig(player).setProperty(skill_name + ".level",
+			((Oblivion) playerConfig(player)).setProperty(skill_name + ".level",
 					level);
 			player.sendMessage(ChatColor.YELLOW
 					+ "Congratulations! You have advanced to level "
@@ -1022,7 +1022,7 @@ public class Oblivion extends JavaPlugin {
     	    	int staminaBoosts = playerConfig(player).getInt("staminaBoost", 0);
     			staminaBoosts++;
     			int timerID = player.getServer().getScheduler().scheduleSyncRepeatingTask(this, sprint, 10*staminaBoosts+boost, 10*staminaBoosts+boost);
-    			playerConfig(player).setProperty( "sprintTimer", timerID);
+    			((Oblivion) playerConfig(player)).setProperty( "sprintTimer", timerID);
 			}
 
 			// Display the appropriate message, if any
@@ -1035,7 +1035,7 @@ public class Oblivion extends JavaPlugin {
 
 		}
 
-		playerConfig(player).setProperty(skill_name + ".experience", exp);
+		((Oblivion) playerConfig(player)).setProperty(skill_name + ".experience", exp);
 
 		updateName(player);
 		// getConfig().save(); //TURN THIS OFF LATER
@@ -1059,9 +1059,9 @@ public class Oblivion extends JavaPlugin {
 				if (amt > 0 && itm != null)
 				{
 				
-					playerConfig(p).setProperty("Inventory."+inven_name+"."+String.valueOf(i)+".D", durability);
-					playerConfig(p).setProperty("Inventory."+inven_name+"."+String.valueOf(i)+".ID", id);
-					playerConfig(p).setProperty("Inventory."+inven_name+"."+String.valueOf(i)+".AM", amt);
+					((Oblivion) playerConfig(p)).setProperty("Inventory."+inven_name+"."+String.valueOf(i)+".D", durability);
+					((Oblivion) playerConfig(p)).setProperty("Inventory."+inven_name+"."+String.valueOf(i)+".ID", id);
+					((Oblivion) playerConfig(p)).setProperty("Inventory."+inven_name+"."+String.valueOf(i)+".AM", amt);
 				
 				}
 			}
@@ -2179,57 +2179,57 @@ public class Oblivion extends JavaPlugin {
 		getCommand("levels").setExecutor(new OBLevels(this));
 		getCommand("resetPlayerName").setExecutor(new OBLevels(this));
 		getCommand("createTask").setExecutor(new OBLevels(this));
-		getCommand("verboseon").setExecutor(new OBLevels());
-		getCommand("verboseoff").setExecutor(new OBLevels());
-		getCommand("setLevel").setExecutor(new OBLevels());
-		getCommand("resetPlayer").setExecutor(new OBLevels());
-		getCommand("sendTutorial").setExecutor(new OBLevels());
-		getCommand("set").setExecutor(new OBLevels());
-		getCommand("who").setExecutor(new OBLevels());
-		getCommand("task").setExecutor(new OBLevels());
-		getCommand("getLevels").setExecutor(new OBLevels());
-		getCommand("setFlag").setExecutor(new OBLevels());
-		getCommand("nomad").setExecutor(new OBLevels());
-		getCommand("addGuide").setExecutor(new OBLevels());
-		getCommand("removeGuide").setExecutor(new OBLevels());
-		getCommand("addMod").setExecutor(new OBLevels());
-		getCommand("removeMod").setExecutor(new OBLevels());
-		getCommand("addLWC").setExecutor(new OBLevels());
-		getCommand("shop").setExecutor(new OBLevels());
-		getCommand("helmet").setExecutor(new OBLevels());
-		getCommand("sneak").setExecutor(new OBLevels());
-		getCommand("tell").setExecutor(new OBLevels());
-		getCommand("speak").setExecutor(new OBLevels());
-		getCommand("minestatus").setExecutor(new OBLevels());
-		getCommand("sarah").setExecutor(new OBLevels());
-		getCommand("spec").setExecutor(new OBLevels());
-		getCommand("pet").setExecutor(new OBLevels());
-		getCommand("teleport").setExecutor(new OBLevels());
-		getCommand("citadel").setExecutor(new OBLevels());
-		getCommand("resetHouse").setExecutor(new OBLevels());
-		getCommand("event").setExecutor(new OBLevels());
-		getCommand("ekit").setExecutor(new OBLevels());
-		getCommand("lvl").setExecutor(new OBLevels());
-		getCommand("exp").setExecutor(new OBLevels());
-		getCommand("setEvent").setExecutor(new OBLevels());
-		getCommand("c").setExecutor(new OBLevels());
-		getCommand("s").setExecutor(new OBLevels());
-		getCommand("potion").setExecutor(new OBLevels());
-		getCommand("drug").setExecutor(new OBLevels());
-		getCommand("pot").setExecutor(new OBLevels());
-		getCommand("mirror").setExecutor(new OBLevels());
-		getCommand("tutorial").setExecutor(new OBLevels());
-		getCommand("admin").setExecutor(new OBLevels());
-        getCommand("clone").setExecutor(new OBLevels());
+		getCommand("verboseon").setExecutor(new OBLevels(this));
+		getCommand("verboseoff").setExecutor(new OBLevels(this));
+		getCommand("setLevel").setExecutor(new OBLevels(this));
+		getCommand("resetPlayer").setExecutor(new OBLevels(this));
+		getCommand("sendTutorial").setExecutor(new OBLevels(this));
+		getCommand("set").setExecutor(new OBLevels(this));
+		getCommand("who").setExecutor(new OBLevels(this));
+		getCommand("task").setExecutor(new OBLevels(this));
+		getCommand("getLevels").setExecutor(new OBLevels(this));
+		getCommand("setFlag").setExecutor(new OBLevels(this));
+		getCommand("nomad").setExecutor(new OBLevels(this));
+		getCommand("addGuide").setExecutor(new OBLevels(this));
+		getCommand("removeGuide").setExecutor(new OBLevels(this));
+		getCommand("addMod").setExecutor(new OBLevels(this));
+		getCommand("removeMod").setExecutor(new OBLevels(this));
+		getCommand("addLWC").setExecutor(new OBLevels(this));
+		getCommand("shop").setExecutor(new OBLevels(this));
+		getCommand("helmet").setExecutor(new OBLevels(this));
+		getCommand("sneak").setExecutor(new OBLevels(this));
+		getCommand("tell").setExecutor(new OBLevels(this));
+		getCommand("speak").setExecutor(new OBLevels(this));
+		getCommand("minestatus").setExecutor(new OBLevels(this));
+		getCommand("sarah").setExecutor(new OBLevels(this));
+		getCommand("spec").setExecutor(new OBLevels(this));
+		getCommand("pet").setExecutor(new OBLevels(this));
+		getCommand("teleport").setExecutor(new OBLevels(this));
+		getCommand("citadel").setExecutor(new OBLevels(this));
+		getCommand("resetHouse").setExecutor(new OBLevels(this));
+		getCommand("event").setExecutor(new OBLevels(this));
+		getCommand("ekit").setExecutor(new OBLevels(this));
+		getCommand("lvl").setExecutor(new OBLevels(this));
+		getCommand("exp").setExecutor(new OBLevels(this));
+		getCommand("setEvent").setExecutor(new OBLevels(this));
+		getCommand("c").setExecutor(new OBLevels(this));
+		getCommand("s").setExecutor(new OBLevels(this));
+		getCommand("potion").setExecutor(new OBLevels(this));
+		getCommand("drug").setExecutor(new OBLevels(this));
+		getCommand("pot").setExecutor(new OBLevels(this));
+		getCommand("mirror").setExecutor(new OBLevels(this));
+		getCommand("tutorial").setExecutor(new OBLevels(this));
+		getCommand("admin").setExecutor(new OBLevels(this));
+        getCommand("clone").setExecutor(new OBLevels(this));
 		getCommand("town").setExecutor(new SaCommands(this));
 		getCommand("setSettlementFlag").setExecutor(new SaCommands(this));
 		getCommand("resetSettlement").setExecutor(new SaCommands(this));
 		
-		getCommand("mkick").setExecutor(new OBLevels());
-		getCommand("mban").setExecutor(new OBLevels());
-		getCommand("munban").setExecutor(new OBLevels());
-		getCommand("mtp").setExecutor(new OBLevels());
-		getCommand("mspawn").setExecutor(new OBLevels());
+		getCommand("mkick").setExecutor(new OBLevels(this));
+		getCommand("mban").setExecutor(new OBLevels(this));
+		getCommand("munban").setExecutor(new OBLevels(this));
+		getCommand("mtp").setExecutor(new OBLevels(this));
+		getCommand("mspawn").setExecutor(new OBLevels(this));
 
 		// EXAMPLE: Custom code, here we just output some info so we can check
 		// all is well
@@ -2318,7 +2318,7 @@ public class Oblivion extends JavaPlugin {
 
 	}
 
-	private void removeProperty(String string) {
+	void removeProperty(String string) {
 		// TODO Auto-generated method stub
 		
 	}
@@ -2381,7 +2381,7 @@ public class Oblivion extends JavaPlugin {
 
 		mod.save();
 
-		playerConfig(player).setProperty("lwc_limit", current_limit);
+		((Oblivion) playerConfig(player)).setProperty("lwc_limit", current_limit);
 		
 		
 	}
