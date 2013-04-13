@@ -536,7 +536,7 @@ public class OBBlockListener implements Listener
         Block block = event.getBlock();
 
         if ((block.getType() == Material.SAND) || (block.getType() == Material.GRAVEL)) {
-            Block above = block.getFace(BlockFace.UP);
+            Block above = block.getRelative(BlockFace.UP);
             if (above.getType() == Material.IRON_BLOCK) {
                 event.setCancelled(true);
             }
