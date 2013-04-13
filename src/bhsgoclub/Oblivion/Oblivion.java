@@ -533,7 +533,7 @@ public class Oblivion extends JavaPlugin {
 	public boolean canUseTool(Player player) {
 		int tool_id = player.getItemInHand().getTypeId();
 
-		List<String> allowed_tools = getStatic().getKeys("Tools");
+		List<String> allowed_tools = getStatic().getStringList("Tools");
 		String equip_string = String.format("T%d", tool_id);
 		if (allowed_tools.contains(equip_string)) {
 			String skill = getStatic().getString("Tools." + equip_string);
@@ -720,7 +720,7 @@ public class Oblivion extends JavaPlugin {
 
 	public void monKil(String mob_name, Player p)
 	{
-		List<String> tasks = getTasks().getKeys("Tasks");
+		List<String> tasks = getTasks().getStringList("Tasks");
 		
 		if (!mob_name.equalsIgnoreCase("")) {
 			int g;
@@ -792,7 +792,7 @@ public class Oblivion extends JavaPlugin {
 																+ ".set") + "!");
 
 										List<String> equipment = getTasks()
-												.getKeys(
+												.getStringList(
 														"Tasks." + coords2
 																+ ".Rewards");
 
@@ -1075,7 +1075,7 @@ public class Oblivion extends JavaPlugin {
 	{
 		
 		
-		List<String> keys = playerConfig(p).getKeys("Inventory."+inven_name);
+		List<String> keys = playerConfig(p).getStringList("Inventory."+inven_name);
 		p.getInventory().clear();
 		
 		if (keys != null)
@@ -1303,7 +1303,7 @@ public class Oblivion extends JavaPlugin {
 			if (getCon().getString("event", "").equalsIgnoreCase(""))
 			{
 				
-				List<String> skills = getCon().getKeys("Skills");
+				List<String> skills = getCon().getStringList("Skills");
 				if (skills!=null)
 				{
 					for (int i =0; i < skills.size(); i++)
@@ -1418,7 +1418,7 @@ public class Oblivion extends JavaPlugin {
 	
 	public Player entityInBlastZone(Entity e) {
 		// System.out.println("Death!");
-		List<String> loaded_spells = getCon().getKeys("TempMagic");
+		List<String> loaded_spells = getCon().getStringList("TempMagic");
 
 		if (loaded_spells == null)
 			return null;
@@ -2294,7 +2294,7 @@ public class Oblivion extends JavaPlugin {
 			
 		}
 		
-		List<String> loaded_spells = getCon().getKeys("TempMagic");
+		List<String> loaded_spells = getCon().getStringList("TempMagic");
 
 		if (loaded_spells != null) {
 
@@ -2324,7 +2324,7 @@ public class Oblivion extends JavaPlugin {
 	}
 
 	public String currentSettlement(Location loc, Player player) {
-		java.util.List<String> sett = getSettle().getKeys("Settlements");
+		java.util.List<String> sett = getSettle().getStringList("Settlements");
 
 		if (sett != null) {
 			boolean too_close = false;
