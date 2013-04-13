@@ -90,6 +90,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.permissions.PermissionAttachment;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginDescriptionFile;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -548,6 +549,11 @@ public class Oblivion extends JavaPlugin {
 			}
 		}
 		return true;
+	}
+
+	private void gitList() {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public int skillExperience(Player player, String skill_name) {
@@ -1179,11 +1185,11 @@ public class Oblivion extends JavaPlugin {
 		// CONFIG.save();
 		System.out.println("Goodbye world!");
 		
-		getCon().save();
-		getSettle().save();
-		getTelepad().save();
-		getTasks().save();
-		getXrayers().save();
+		((Oblivion) getCon()).save();
+		((Oblivion) getSettle()).save();
+		((Oblivion) getTelepad()).save();
+		((Oblivion) getTasks()).save();
+		((Oblivion) getXrayers()).save();
 		save();
 		
     	Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+"Saving worlds... Please wait");
@@ -2169,10 +2175,10 @@ public class Oblivion extends JavaPlugin {
 		*/
 		// onItemSpawn
 		// Register our commands
-		getCommand("level").setExecutor(new OBLevels());
-		getCommand("levels").setExecutor(new OBLevels());
-		getCommand("resetPlayerName").setExecutor(new OBLevels());
-		getCommand("createTask").setExecutor(new OBLevels());
+		getCommand("level").setExecutor(new OBLevels(this));
+		getCommand("levels").setExecutor(new OBLevels(this));
+		getCommand("resetPlayerName").setExecutor(new OBLevels(this));
+		getCommand("createTask").setExecutor(new OBLevels(this));
 		getCommand("verboseon").setExecutor(new OBLevels());
 		getCommand("verboseoff").setExecutor(new OBLevels());
 		getCommand("setLevel").setExecutor(new OBLevels());
@@ -2198,7 +2204,7 @@ public class Oblivion extends JavaPlugin {
 		getCommand("sarah").setExecutor(new OBLevels());
 		getCommand("spec").setExecutor(new OBLevels());
 		getCommand("pet").setExecutor(new OBLevels());
-		//getCommand("teleport").setExecutor(new OBLevels());
+		getCommand("teleport").setExecutor(new OBLevels());
 		getCommand("citadel").setExecutor(new OBLevels());
 		getCommand("resetHouse").setExecutor(new OBLevels());
 		getCommand("event").setExecutor(new OBLevels());
@@ -2287,7 +2293,7 @@ public class Oblivion extends JavaPlugin {
 			((Oblivion) playerConfig(player)).setProperty( "sprintTimer", timerID);
 			
 		}
-
+		
 		List<String> loaded_spells = getCon().getKeys("TempMagic");
 
 		if (loaded_spells != null) {
@@ -2295,7 +2301,7 @@ public class Oblivion extends JavaPlugin {
 			int i;
 			for (i = 0; i < loaded_spells.size(); i++) {
 				String id = loaded_spells.get(i);
-				getCon().removeProperty("TempMagic." + id);
+				((Oblivion) getCon()).removeProperty("TempMagic." + id);
 			}
 
 		}
@@ -2310,6 +2316,11 @@ public class Oblivion extends JavaPlugin {
 								+ " Will add this when its time");
 
 
+	}
+
+	private void removeProperty(String string) {
+		// TODO Auto-generated method stub
+		
 	}
 
 	public String currentSettlement(Location loc, Player player) {
