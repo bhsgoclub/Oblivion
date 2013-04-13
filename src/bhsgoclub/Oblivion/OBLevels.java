@@ -21,7 +21,7 @@ import bhsgoclub.Oblivion.ConfigUtil;
 public class OBLevels implements CommandExecutor {
 	private Oblivion plugin;
 
-	public void OBLevels(Oblivion plugin) {
+	public OBLevels(Oblivion plugin) {
 		this.plugin = plugin;
 	}
 

@@ -16,6 +16,7 @@ import org.bukkit.craftbukkit.v1_5_R2.CraftWorld;
 //import org.bukkit.World;
 import org.bukkit.entity.*;
 import org.bukkit.event.Event;
+import org.bukkit.event.EventHandler;
 import org.bukkit.event.entity.*;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerRespawnEvent;
@@ -334,7 +335,7 @@ public class OBMobListener implements Listener
 					    		 {
 							    	//FReeze player
 	
-							    	 plugin.doEffect(p.getHandle(), 2, 1, 2);
+							    	 plugin.doEffect((EventHandler) ((CraftWorld) p).getHandle(), 2, 1, 2);
 							    	 
 							    	 ((Player) damager).sendMessage(ChatColor.YELLOW+"You have slowed "+ p.getName()+"!");
 							    	 p.sendMessage(ChatColor.RED+"You have been slowed for 1 second.");
@@ -352,7 +353,7 @@ public class OBMobListener implements Listener
 					    		 {
 							    	//FReeze player
 	
-							    	 plugin.doEffect(p.getHandle(), 9, 5, 2);
+							    	 plugin.doEffect((EventHandler) ((CraftWorld) p).getHandle(), 9, 5, 2);
 							    	 
 							    	 ((Player) damager).sendMessage(ChatColor.YELLOW+"You have concussed "+ p.getName()+"!");
 							    	 p.sendMessage(ChatColor.RED+"You have been concussed for 5 second.");
