@@ -9,6 +9,7 @@ import net.minecraft.server.v1_5_R2.Packet29DestroyEntity;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
+import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPlayer;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Monster;
@@ -27,7 +28,7 @@ public class OBNPC_Spawner implements Runnable
         this.npc_dict = new HashMap<String, LivingEntity>();
     }
     
-    @Override
+    
     public void run()
     {
     	List<String> NPCS = plugin.getTelepad().getKeys("NPCS");
@@ -105,8 +106,8 @@ public class OBNPC_Spawner implements Runnable
 	                    for (Player p2 : Bukkit.getServer().getOnlinePlayers())
 	                    {
 	                    	if (!t.equalsIgnoreCase("wolf"))
-	                    		((Player) p2).getHandle().netServerHandler.sendPacket(p29);
-	                        ((Player) p2).getHandle().netServerHandler.sendPacket(p20);
+	                    		((CraftPlayer) p2).getHandle().playerConnection.sendPacket(p29);
+	                        ((CraftPlayer) p2).getHandle().playerConnection.sendPacket(p20);
 	                    }
 	                    
 						this.npc_dict.put(loc, actual_wolf);
@@ -121,9 +122,9 @@ public class OBNPC_Spawner implements Runnable
 	                    for (Player p2 : Bukkit.getServer().getOnlinePlayers())
 	                    {
 	                    	if (!t.equalsIgnoreCase("wolf"))
-	                    		((Player) p2).getHandle().netServerHandler.sendPacket(p29);
+	                    		((CraftPlayer) p2).getHandle().playerConnection.sendPacket(p29);
 	                    	
-	                        ((Player) p2).getHandle().netServerHandler.sendPacket(p20);
+	                        ((CraftPlayer) p2).getHandle().playerConnection.sendPacket(p20);
 	                    }
 						continue;
 					}
