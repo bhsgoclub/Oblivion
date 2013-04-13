@@ -59,6 +59,7 @@ import org.bukkit.entity.*;
 import org.bukkit.material.MaterialData;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.configuration.Configuration;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.craftbukkit.v1_5_R2.CraftWorld;
 import org.bukkit.craftbukkit.v1_5_R2.entity.CraftPlayer;
 
@@ -88,7 +89,7 @@ public class OBPlayerListener implements Listener
 	    public void onPlayerJoin(PlayerJoinEvent event)
 	    {
 	    	
-			List<String> str = plugin.getSettle().getKeys("Bans");
+			List<String> str = plugin.getSettle().getStringList("Bans");
 			if (str != null)
 			{
 				int i;
@@ -106,7 +107,7 @@ public class OBPlayerListener implements Listener
 	    	
 	    	OBManaBar mana_bar = new OBManaBar(event.getPlayer(), plugin);
 	    	int timerID = event.getPlayer().getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 50, 50);
-	    	plugin.playerConfig(event.getPlayer()).setProperty("manaTimer", timerID);
+	    	plugin.playerConfig(event.getPlayer()).set("manaTimer", timerID);
 	    			
 	    	OBSprinter sprint = new OBSprinter(event.getPlayer(), plugin);
 	    	
@@ -117,7 +118,7 @@ public class OBPlayerListener implements Listener
 			int boost = stam*3;
 			
 			timerID = event.getPlayer().getServer().getScheduler().scheduleSyncRepeatingTask(plugin, sprint, 10*staminaBoosts+boost, 10*staminaBoosts+boost);
-			plugin.playerConfig(event.getPlayer()).setProperty( "sprintTimer", timerID);
+			plugin.playerConfig(event.getPlayer()).set( "sprintTimer", timerID);
 			
 			
 	    	Player p = event.getPlayer();
@@ -130,7 +131,7 @@ public class OBPlayerListener implements Listener
 	    	addr = addr.split(":")[0];
 	    	
 	    	
-	    	plugin.playerConfig(p.getName()).setProperty("IP", addr);
+	    	plugin.playerConfig(p.getName()).set("IP", addr);
 	    	
 	    	//Look through the online players
 	    	Player[] pa= Bukkit.getServer().getOnlinePlayers();
@@ -138,7 +139,7 @@ public class OBPlayerListener implements Listener
 	    	
 	    	
 	  
-	    	plugin.playerConfig(p).setProperty("is_sneaking", "false");
+	    	plugin.playerConfig(p).set("is_sneaking", "false");
 	    	p.setSneaking(false);
 	    	
 	    	 System.out.println(event.getPlayer().getName() + " joined the server");
@@ -148,12 +149,12 @@ public class OBPlayerListener implements Listener
 	    		p.teleport(new Location(p.getWorld(), 395, 11, -356));
 	    		
 	    		p.sendMessage(ChatColor.YELLOW+"Welcome to SkyCraft.");
-	    		plugin.playerConfig(p).setProperty("first_join_new7", "complete");
+	    		plugin.playerConfig(p).set("first_join_new7", "complete");
 	    		
-	    		plugin.playerConfig(p).setProperty("archery_task",
+	    		plugin.playerConfig(p).set("archery_task",
 						"started");
-				plugin.playerConfig(p).setProperty("magic_task", "started");
-				plugin.playerConfig(p).setProperty("melee_task", "started");
+				plugin.playerConfig(p).set("magic_task", "started");
+				plugin.playerConfig(p).set("melee_task", "started");
 				
 	    	}
 	    	
@@ -161,8 +162,8 @@ public class OBPlayerListener implements Listener
 	    	{
 	    		//Tutorial incomplete.
 	    		
-	    		plugin.playerConfig(p).setProperty("nomad", "true");
-	    		plugin.playerConfig(p).setProperty("first_join", "complete");
+	    		plugin.playerConfig(p).set("nomad", "true");
+	    		plugin.playerConfig(p).set("first_join", "complete");
 	    		
 	    		System.out.println("New player" + plugin.playerName(p) + "with config " + plugin.playerConfig(p).getString("first_join", ""));
 	    		
@@ -343,7 +344,7 @@ public class OBPlayerListener implements Listener
 	        		  {
 	        			  //if (plugin.gainMana(player, -5))
 	        			  //{
-	        			  plugin.playerConfig(player).setProperty("pegasusBoots_MOVED", "1");
+	        			  plugin.playerConfig(player).set("pegasusBoots_MOVED", "1");
 		
 				        	  org.bukkit.util.Vector eye=player.getEyeLocation().getDirection();
 				        	  eye.normalize();
@@ -364,7 +365,7 @@ public class OBPlayerListener implements Listener
 	        	  else
 	        	  {
 	        		  boots--;
-	        		  plugin.playerConfig(player).setProperty("pegasusBoots_MOVED", String.valueOf(boots));
+	        		  plugin.playerConfig(player).set("pegasusBoots_MOVED", String.valueOf(boots));
 	        	  }
 	        	  
 	        	  */
@@ -391,7 +392,7 @@ public class OBPlayerListener implements Listener
 	  	        	  }
 	        	  		
 			        	  boots--;
-		        		  plugin.playerConfig(player).setProperty("pegasusLEGS_MOVED", String.valueOf(boots));
+		        		  plugin.playerConfig(player).set("pegasusLEGS_MOVED", String.valueOf(boots));
 	        		  }
 			    }
 	        	}
@@ -445,7 +446,7 @@ public class OBPlayerListener implements Listener
 		    	long time_since = current_time-previous_time;
 		    	if (time_since < 10000)
 				{
-		    		plugin.playerConfig(player).setProperty("teleporting", "false");
+		    		plugin.playerConfig(player).set("teleporting", "false");
 		    		
 		    		player.sendMessage(ChatColor.YELLOW+"Teleport cancelled.");
 		    		Bukkit.getServer().getScheduler().cancelTask(plugin.playerConfig(player).getInt("teleportSchedule", 0));
@@ -459,7 +460,7 @@ public class OBPlayerListener implements Listener
 		    	long time_since = current_time-previous_time;
 		    	if (time_since < 10000)
 				{
-		    		plugin.playerConfig(player).setProperty("citadel", "false");
+		    		plugin.playerConfig(player).set("citadel", "false");
 		    		
 		    		player.sendMessage(ChatColor.YELLOW+"Teleport cancelled.");
 		    		Bukkit.getServer().getScheduler().cancelTask(plugin.playerConfig(player).getInt("citadelSchedule", 0));
@@ -475,7 +476,7 @@ public class OBPlayerListener implements Listener
     		if (since>(1800000))
     		{
     			player.sendMessage(ChatColor.YELLOW+"Teleporting... Don't move for 10 seconds");
-    			plugin.getConfig().setProperty(player.getName()+".teleporting", "true");
+    			plugin.getConfig().set(player.getName()+".teleporting", "true");
     		}
     		else
     		{
@@ -578,7 +579,7 @@ public class OBPlayerListener implements Listener
 	    		return;
 	    	}
 	    	
-        	((Player)p).getHandle().itemInWorldManager.c(main_block.getX(), main_block.getY(), main_block.getZ());
+        	(p).getHandle().itemInWorldManager.c(main_block.getX(), main_block.getY(), main_block.getZ());
         		
         	transverse-=1;
         	
@@ -883,7 +884,7 @@ public class OBPlayerListener implements Listener
 			    	if (time_since > 1000)
 					{
 			    		
-			    		plugin.playerConfig(p).setProperty("lastCastTimeFreeze", String.valueOf(current_time));
+			    		plugin.playerConfig(p).set("lastCastTimeFreeze", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							if (plugin.gainMana(p, -20))
@@ -999,7 +1000,7 @@ public class OBPlayerListener implements Listener
 					{
 			    		if (plugin.gainMana(p, -1))
 				    	{
-			    			plugin.playerConfig(p).setProperty("lastSLOW", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set("lastSLOW", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 		
 							slowBlock(block, p, 4);
@@ -1143,10 +1144,10 @@ public class OBPlayerListener implements Listener
 	    	String coords = String.format("%d %d %d", (int)loc.getX(), (int)loc.getY(), (int)loc.getZ());
         	
 	    	String current = String.valueOf(System.currentTimeMillis());
-	    	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Player", plugin.playerName(p));
-	    	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Time", current);
-	    	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Location",coords );
-	    	plugin.getCon().setProperty("TempMagic."+current+"|"+plugin.playerName(p)+".Spell",spell );
+	    	plugin.getCon().set("TempMagic."+current+"|"+plugin.playerName(p)+".Player", plugin.playerName(p));
+	    	plugin.getCon().set("TempMagic."+current+"|"+plugin.playerName(p)+".Time", current);
+	    	plugin.getCon().set("TempMagic."+current+"|"+plugin.playerName(p)+".Location",coords );
+	    	plugin.getCon().set("TempMagic."+current+"|"+plugin.playerName(p)+".Spell",spell );
 
 	    	OBBlastZones mana_bar = new OBBlastZones(plugin, current+"|"+plugin.playerName(p));
 	    	int timerID = p.getServer().getScheduler().scheduleSyncDelayedTask(plugin, mana_bar, 20*seconds);
@@ -1165,7 +1166,7 @@ public class OBPlayerListener implements Listener
 					{
 			    		if (plugin.gainMana(p, -1))
 				    	{
-			    			plugin.playerConfig(p).setProperty("lastCactiTime", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set("lastCactiTime", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 		
 							
@@ -1210,7 +1211,7 @@ public class OBPlayerListener implements Listener
 			    	if (time_since > 40000)
 					{
 			    		
-			    			plugin.playerConfig(p).setProperty("lastDarkness", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set("lastDarkness", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1306,7 +1307,7 @@ public class OBPlayerListener implements Listener
 			    	if (time_since > 20000)
 					{
 			    		
-			    		plugin.playerConfig(p).setProperty("lastUberStorm", String.valueOf(current_time));
+			    		plugin.playerConfig(p).set("lastUberStorm", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1352,7 +1353,7 @@ public class OBPlayerListener implements Listener
 			    		if (plugin.gainMana(p, -15))
 				    	{
 			    			
-			    			plugin.getConfig().setProperty(plugin.playerName(p)+".lastCastTime", String.valueOf(current_time));
+			    			plugin.getConfig().set(plugin.playerName(p)+".lastCastTime", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1393,7 +1394,7 @@ public class OBPlayerListener implements Listener
 			    	if (time_since > 10000)
 					{
 			    		
-			    		plugin.playerConfig(p).setProperty("lastCastTimeArrowLowLARGE", String.valueOf(current_time));
+			    		plugin.playerConfig(p).set("lastCastTimeArrowLowLARGE", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1474,7 +1475,7 @@ public class OBPlayerListener implements Listener
 		    {
 			    	if (time_since > 20000)
 					{
-			    		plugin.playerConfig(p).setProperty("lastCastSlowness", String.valueOf(current_time));
+			    		plugin.playerConfig(p).set("lastCastSlowness", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1520,7 +1521,7 @@ public class OBPlayerListener implements Listener
 			    	if (time_since > 3000)
 					{
 			    		
-			    		plugin.playerConfig(p).setProperty("lastCastTimeArrowLow", String.valueOf(current_time));
+			    		plugin.playerConfig(p).set("lastCastTimeArrowLow", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1569,7 +1570,7 @@ public class OBPlayerListener implements Listener
 					{
 			    		if (plugin.gainMana(p, -1))
 				    	{
-			    			plugin.playerConfig(p).setProperty(plugin.playerName(p)+"lastCastTime", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set(plugin.playerName(p)+"lastCastTime", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1584,7 +1585,7 @@ public class OBPlayerListener implements Listener
 							OBAIZombie mana_bar = new OBAIZombie(p, plugin, zombie);
 
 							int timerID = p.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 10);
-					    	//getConfig().setProperty(playerName(player)+".manaTimer", timerID);
+					    	//getConfig().set(playerName(player)+".manaTimer", timerID);
 
 
 							removeInventoryItems(p.getInventory(), Material.EGG, 1);
@@ -1609,7 +1610,7 @@ public class OBPlayerListener implements Listener
 					{
 			    		if (plugin.gainMana(p, -32))
 				    	{
-			    			plugin.playerConfig(p).setProperty(plugin.playerName(p)+"lastExplosionCastTime", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set(plugin.playerName(p)+"lastExplosionCastTime", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1761,7 +1762,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    	long current_time = System.currentTimeMillis();
 	    	long previous_time = Long.valueOf(plugin.playerConfig(p).getString("lastTeleportCastTime", String.valueOf(0)));
 	    		
-	    	plugin.playerConfig(p).setProperty("lastTeleportCastTime", String.valueOf(current_time));
+	    	plugin.playerConfig(p).set("lastTeleportCastTime", String.valueOf(current_time));
 			String coords = plugin.playerConfig(p).getString("teleport_coordinates", "");
 			
 			if (!coords.equalsIgnoreCase(""))
@@ -1814,7 +1815,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			    		if (plugin.gainMana(p, -16))
 				    	{
 			    			
-			    			plugin.playerConfig(p).setProperty("lastCastTime", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set("lastCastTime", String.valueOf(current_time));
 							Block block = p.getTargetBlock(null, 2000);
 							
 							int lvl2 = plugin.skillLevel((Player)p, "Magic");
@@ -1850,7 +1851,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 					{
 			    		if (plugin.gainMana(p, -40))
 				    	{
-			    			plugin.playerConfig(p).setProperty("lastCastTimeS", String.valueOf(current_time));
+			    			plugin.playerConfig(p).set("lastCastTimeS", String.valueOf(current_time));
 			    			
 							Block block = p.getTargetBlock(null, 2000);
 							addBlastZone(p, block.getLocation(), 3, "lightning storm");
@@ -1944,24 +1945,24 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    	
 	    	if (last_msg3.equalsIgnoreCase(event.getMessage())&&last_msg2.equalsIgnoreCase(event.getMessage())&&last_msg.equalsIgnoreCase(event.getMessage()))
 	    	{
-	    		plugin.playerConfig(event.getPlayer()).setProperty("LastChat", "");
-	    		plugin.playerConfig(event.getPlayer()).setProperty("LastLastChat", "");
-	    		plugin.playerConfig(event.getPlayer()).setProperty("LastLastChatChat", "");
+	    		plugin.playerConfig(event.getPlayer()).set("LastChat", "");
+	    		plugin.playerConfig(event.getPlayer()).set("LastLastChat", "");
+	    		plugin.playerConfig(event.getPlayer()).set("LastLastChatChat", "");
 	    		Bukkit.broadcastMessage(event.getPlayer().getName()+" was kicked for spamming.");
 	    		event.getPlayer().kickPlayer("Spamming");
 	    	}
 	    	
 	    	if (last_msg2.equalsIgnoreCase(event.getMessage())&&last_msg.equalsIgnoreCase(event.getMessage()))
 	    	{
-	    		plugin.playerConfig(event.getPlayer()).setProperty("LastLastChatChat", event.getMessage());
+	    		plugin.playerConfig(event.getPlayer()).set("LastLastChatChat", event.getMessage());
 	    	}
 	    	
 	    	if (last_msg.equalsIgnoreCase(event.getMessage()))
 	    	{
-	    		plugin.playerConfig(event.getPlayer()).setProperty("LastLastChat", event.getMessage());
+	    		plugin.playerConfig(event.getPlayer()).set("LastLastChat", event.getMessage());
 	    	}
 	    	
-	    	plugin.playerConfig(event.getPlayer()).setProperty("LastChat", event.getMessage());
+	    	plugin.playerConfig(event.getPlayer()).set("LastChat", event.getMessage());
 	    	
 	    	
 	    	
@@ -1985,7 +1986,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    		
 	    		//Find the meanings of some words
 	    		String requested_item = plugin.playerConfig(event.getPlayer()).getString("ChatBot.Action", "");
-	    		plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    		plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    		
 	    		String statement = "";
 	    		String talking_about = "";
@@ -1993,7 +1994,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    		String[] words = bm.split(" ");
 	    		
 	    		int annoyances = plugin.playerConfig(event.getPlayer()).getInt("ChatBot.Anger", 0);
-	    		plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Anger", 0);
+	    		plugin.playerConfig(event.getPlayer()).set("ChatBot.Anger", 0);
 	    		
 	    		int m;
 	    		
@@ -2018,7 +2019,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		    				requested_item = "name";
 		    				
 		    				//Desired name
-		    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Name", wrd);
+		    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Name", wrd);
 		    				botReply("Ok, ill call you <name> from now on.:Sure thing, <name>!", event.getPlayer());
 		    			}
 		    			else if (ppw.contains("how") && pw.contains("are")&& wrd.contains("you"))
@@ -2056,28 +2057,28 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		    				requested_item = "marry";
 		    				botReply("Im not allowed to marry anyone D;:I don't think my master would allow that.:Sry <name>, im in love with somebody else.:No, sorry.", event.getPlayer());
 		    				
-		    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "marry");
+		    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "marry");
 		    			}
 		    			else if (((pw.contains("your")||pw.contains("ur")) &&(wrd.contains("stupid")||wrd.contains("dumb"))))
 		    			{
 		    				requested_item = "stupid";
 		    				botReply("Sorry ;( I'm still fairly young.:bhsgoclub has only given me limited inteligence. Sorry ;(:Thats mean ;(:;(:Sry <name>. I can't help it.", event.getPlayer());
 		    				
-		    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "stupid");
+		    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "stupid");
 		    			}
 		    			else if (wrd.contains("shutup")||wrd.contains("stfu"))
 		    			{
 		    				requested_item = "shutup";
 		    				botReply("Make me, jerk: You leave me alone, i leave you alone. Deal?:You can talk.:Sorry <name> ;(", event.getPlayer());
 		    				
-		    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "shutup");
+		    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "shutup");
 		    			}
 		    			else if (ppw.contains("who")&& pw.contains("am")&& wrd.contains("I"))
 		    			{
 		    				requested_item = "shutup";
 		    				botReply("Your <name>, silly.:What kind of person doesn't even know their own name. Geez <name>.:<name>:You have asked me to call you <name>.:Hiah <name> ;)", event.getPlayer());
 		    				
-		    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "shutup");
+		    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "shutup");
 		    			}
 		    			
 		    			//Add some useful things
@@ -2091,7 +2092,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "ghost busters";
 	    				botReply("Ghost Busters!", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    				break;
 	    			}
 	    			
@@ -2100,7 +2101,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "ghost busters";
 	    				botReply("A woodchuck would chuck as much wood as a woodchuck could chuck if a woodchuck could chuck wood.", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    				break;
 	    			}
 	    			
@@ -2110,7 +2111,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "master";
 	    				botReply("bhsgoclub:bhsgoclub is my master:I was created by bhsgoclub:bhsgoclub that other guy is long gone. ;)", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "master");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "master");
 	    				break;
 	    			}
 	    			
@@ -2119,7 +2120,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "items";
 	    				botReply("Sorry, I'm not allowed to spawn items:bhs doesnt let me spawn items sry:I cant do that sorry ;(", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "items");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "items");
 	    				break;
 	    			}
 	    			
@@ -2129,7 +2130,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "tutorial";
 	    				botReply("Because bhs hasnt given me permission to spawn items:Because bhs said so", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			
 	    			
@@ -2138,7 +2139,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "donor";
 	    				botReply("You get portals for donating ($1 for 2 portals). Go to bit.ly/A67CsN.:Only donors can get portals. Go to bit.ly/A67CsN", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    				
 	    				break;
 	    			}
@@ -2152,7 +2153,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    					botReply("You are a nomad, so you cant build until you have applied. Go to tinyurl.com/skycraft4:You're a nomad <name>. Apply at tinyurl.com/skycraft4 ;)", event.getPlayer());
 	    				
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    				
 	    				break;
 	    			}
@@ -2165,7 +2166,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "tutorial";
 	    				botReply("To progress to the training room, throw dirt on the pressure plate. You get dirt from the other side of the room by right clicking on a sign.", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    				
 	    				break;
 	    			}
@@ -2175,7 +2176,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "";
 	    				botReply("Welcome to the server, <name>. If you need help, just ask me.", event.getPlayer());
 	    			
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			
 	    			if (wrd.contains("tutorial") && requested_item.equalsIgnoreCase("stuck"))
@@ -2183,7 +2184,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "tutorial";
 	    				botReply("To progress to the training room, throw dirt on the pressure plate. You get dirt from the other side of the room by right clicking on a sign.", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			
 	    			if (wrd.contains("Michael") && requested_item.equalsIgnoreCase("suck"))
@@ -2191,35 +2192,35 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "tutorial";
 	    				botReply("Dont insult my master.:Most likely better then you will ever.:Dont be so jelous of his abbilitys ;)", event.getPlayer());
 	    				//just for Chloe Other coders working on this, dont ask lol
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			else if (wrd.contains("dungeon") && requested_item.equalsIgnoreCase("stuck"))
 	    			{
 	    				requested_item = "dungeon";
 	    				botReply("The only way out of a dungeon is by finishing it or suiciding. Would you like me to kill you?", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "suicide");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "suicide");
 	    			}
 	    			else if (wrd.contains("engineers") && requested_item.equalsIgnoreCase("stuck"))
 	    			{
 	    				requested_item = "dungeon";
 	    				botReply("The only way out of that building is by suiciding. Would you like me to kill you?", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "suicide");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "suicide");
 	    			}
 	    			else if (wrd.contains("noob") && requested_item.equalsIgnoreCase("stuck"))
 	    			{
 	    				requested_item = "noobtrap";
 	    				botReply("The only way out of a noob trap is suicde. Would you like me to kill you?:Your going to have to suicide. Do you want me to kill you?", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "suicide");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "suicide");
 	    			}
 	    			else if (requested_item.equalsIgnoreCase("stuck"))
 	    			{
 	    				requested_item = "unknown";
 	    				botReply("I have no information on that location. Usually the only way to escape is by suiciding. Would you like me to kill you?:Idk where that is sry. I can kill you though?", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "suicide");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "suicide");
 	    			}
 	    			
 	    			
@@ -2231,14 +2232,14 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				event.getPlayer().damage(100);
 	    				event.getPlayer().setFireTicks(1000);
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			else if ((wrd.contains("no")||wrd.contains("na")) && requested_item.equalsIgnoreCase("suicide"))
 	    			{
 	    				requested_item = "suicide";
 	    				botReply("OK. Let me know if you change your mind.:OK ;):Alright ;) Goodluck:Goodluck ;):Kk:ok:ok, ill be here if you change your mind.:Kk. Lemme know if you need anything else.", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			
 	    			
@@ -2247,7 +2248,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "stuck";
 	    				botReply("Where are you stuck?:How are you stuck?:Where are you stuck? ;(:What's your location?:That sucks. Where are you stuck?", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "stuck");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "stuck");
 	    				
 	    				return;
 	    			}
@@ -2256,28 +2257,28 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				requested_item = "help";
 	    				botReply("What's wrong?:What do you need help with?:What do you need?:What's up, <name>?:With what, <name>?:Yes <name>?:What?:Mmm?:Yes <name>?:I'm here to help <name>. What do you need?", event.getPlayer());
 	    			
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "help");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "help");
 	    			}
 	    			else if (wrd.contains("nothing") && requested_item.equalsIgnoreCase("help"))
 	    			{
 	    				requested_item = "stuck";
 	    				botReply("OK. Call if you need anything:No worries ;):*sigh* back to sleep.:Let me know if you need anything else.:ZzzzZzzzz:Ok:Kk:No worries <name>:Let me know if you need anything ;):Haha, alright ;)", event.getPlayer());
 	    				
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "stuck");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "stuck");
 	    			}
 	    			else if ((wrd.contains("teleport")&&bm.contains("me"))||(wrd.contains("tp")&&bm.contains("me")))
 	    			{
 	    				requested_item = "teleport";
 	    				botReply("Don't ask for teleports ;\\:Mods dont like being pestered.:Teleports are not given.:Don't nag mods for teleports ;(:Why do you need a teleport?", event.getPlayer());
 	    			
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "");
 	    			}
 	    			else if (pw.contains("kill")&&wrd.contains("me"))
 	    			{
 	    				requested_item = "suicide";
 	    				botReply("Are you sure?:You sure? It won't hurt a bit:You certain?:Um, are you sure?:You sure you want to die?:Can you confirm that for me please?", event.getPlayer());
 	    			
-	    				plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Action", "suicide");
+	    				plugin.playerConfig(event.getPlayer()).set("ChatBot.Action", "suicide");
 	    			}
 	    			if (wrd.contains("tutorial") && requested_item.equalsIgnoreCase("stuck"))
 	    	
@@ -2305,7 +2306,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    				event.getPlayer().kickPlayer("Kicked for annoying Sarah");
 	    			}
 	    		
-		    		plugin.playerConfig(event.getPlayer()).setProperty("ChatBot.Anger", annoyances+1);
+		    		plugin.playerConfig(event.getPlayer()).set("ChatBot.Anger", annoyances+1);
 	    			botReply("<name>, I dont understand what you mean.:What?:Please clarify that statement", event.getPlayer());
 	    		}
 	    		else if (requested_item.equalsIgnoreCase("learn"))
@@ -2329,7 +2330,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    			
 	    			//send the message to all the players ;)
 	    			String houseID = plugin.getSettle().getString(event.getPlayer().getName()+".houseID", "");
-	    			java.util.List<String> players = plugin.getSettle().getKeys("Settlements."+houseID+".Players");
+	    			java.util.List<String> players = plugin.getSettle().getStringList("Settlements."+houseID+".Players");
 		        	if (players != null)
 		    		{
 		        		for (i=0; i < players.size(); i++)
@@ -2432,14 +2433,14 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        		int cancel = plugin.playerConfig(p).getInt("BScheduler", -1);
 	        		Bukkit.getServer().getScheduler().cancelTask(cancel);
 	        		
-	        		plugin.playerConfig(p).setProperty( "Binoculars", "false");
+	        		plugin.playerConfig(p).set( "Binoculars", "false");
 	        	}
 	        	else
 	        	{
 		        	OBBino mana_bar = new OBBino(p, plugin);
 					int timerID = p.getServer().getScheduler().scheduleSyncRepeatingTask(plugin, mana_bar, 0, 5);
-					plugin.playerConfig(p).setProperty( "BScheduler", timerID);
-					plugin.playerConfig(p).setProperty( "Binoculars", "true");
+					plugin.playerConfig(p).set( "BScheduler", timerID);
+					plugin.playerConfig(p).set( "Binoculars", "true");
 	        	}
 	        }
 	        else if ( (event.getAction() == Action.RIGHT_CLICK_BLOCK || event.getAction() == Action.RIGHT_CLICK_AIR) && (p.getItemInHand().getTypeId()==2262))
@@ -2463,13 +2464,13 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        else if (event.hasBlock() && event.getAction() == Action.LEFT_CLICK_BLOCK && plugin.playerConfig(p).getString("DisplayCoords","").equalsIgnoreCase("yes"))
 	        {
 	        	System.out.println("Displaying coordinates.");
-	        	plugin.playerConfig(p).setProperty("DisplayCoords", "NO");
+	        	plugin.playerConfig(p).set("DisplayCoords", "NO");
 		        	String task_id = plugin.playerConfig(p).getString("Task_name", "");
 		        	
 		        	Block block = event.getClickedBlock();
 		        	String coords = String.format("%d %d %d", (int)block.getLocation().getX(), (int)block.getLocation().getY(), (int)block.getLocation().getZ());
 		        	
-					List<String> tasks = plugin.getTasks().getKeys("Tasks");
+					List<String> tasks = plugin.getTasks().getStringList("Tasks");
 					
 		        	int g; boolean is_task = false;
 		        	
@@ -2496,7 +2497,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		        		return;
 		        	}
 
-		        	plugin.getTasks().setProperty("Tasks."+coords+".set", task_id);
+		        	plugin.getTasks().set("Tasks."+coords+".set", task_id);
 		        	player.sendMessage(ChatColor.YELLOW+"Task "+task_id+" created!");
 
 		        	return;
@@ -2505,7 +2506,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        {
 
 			
-	        		plugin.playerConfig(p).setProperty("ShopDisplayCoords", "NO");
+	        		plugin.playerConfig(p).set("ShopDisplayCoords", "NO");
 		        	
 		        	
 		        	String selling = plugin.playerConfig(p).getString("Selling", "");
@@ -2517,7 +2518,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		        	Block block = event.getClickedBlock();
 		        	String coords = String.format("%d %d %d", (int)block.getLocation().getX(), (int)block.getLocation().getY(), (int)block.getLocation().getZ());
 		        	
-					List<String> tasks = plugin.getTasks().getKeys("Shops");
+					List<String> tasks = plugin.getTasks().getStringList("Shops");
 					int g;
 					boolean is_task = false;
 					
@@ -2547,10 +2548,10 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		        		return;
 		        	}
 
-		        	plugin.getTasks().setProperty("Shops."+coords+".Selling", selling);
-		        	plugin.getTasks().setProperty("Shops."+coords+".SAmount", samount);
-		        	plugin.getTasks().setProperty("Shops."+coords+".Buying", buying);
-		        	plugin.getTasks().setProperty("Shops."+coords+".BAmount", bamount);
+		        	plugin.getTasks().set("Shops."+coords+".Selling", selling);
+		        	plugin.getTasks().set("Shops."+coords+".SAmount", samount);
+		        	plugin.getTasks().set("Shops."+coords+".Buying", buying);
+		        	plugin.getTasks().set("Shops."+coords+".BAmount", bamount);
 		        	
 		        	//player.sendMessage(ChatColor.YELLOW+"Task "+task_id+" created!");
 
@@ -2643,7 +2644,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        	Player player = event.getPlayer();
 	        	Sign sign = (Sign)block.getState();
 	        	
-	        	List<String> tasks = plugin.getTasks().getKeys("Tasks");
+	        	List<String> tasks = plugin.getTasks().getStringList("Tasks");
 	        	String coords = String.format("%d %d %d", (int)block.getLocation().getX(), (int)block.getLocation().getY(), (int)block.getLocation().getZ());
 	        	
 	        	int g; boolean is_task = false;
@@ -2685,7 +2686,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        	    		{
 	        	    			player.sendMessage(ChatColor.YELLOW+"You are now a leader of this this settlement!");
 	        	    			
-	        	    			plugin.getSettle().setProperty("Settlements."+settlement_name+".Players."+player.getName(), "Leader");
+	        	    			plugin.getSettle().set("Settlements."+settlement_name+".Players."+player.getName(), "Leader");
 
 	        	    			//sendGlobalBlockChange(event.getClickedBlock().getLocation(), event.getClickedBlock().getType(), event.getClickedBlock().getData());
     	        				event.getClickedBlock().setType(Material.AIR);
@@ -2706,8 +2707,8 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	    	        			{
 	    		    				player.sendMessage(ChatColor.YELLOW+"You have joined this settlement!");
 	    		    				
-	    		    				plugin.getSettle().setProperty("Settlements."+settlement_name+".Players."+player.getName(), "Member");
-	    		    				plugin.getSettle().setProperty(player.getName()+".houseID", settlement_name);
+	    		    				plugin.getSettle().set("Settlements."+settlement_name+".Players."+player.getName(), "Member");
+	    		    				plugin.getSettle().set(player.getName()+".houseID", settlement_name);
 
 	    	        				String[] crds = center_loc.split(" ");
 	    	        				Location settlement_loc = new Location(player.getWorld(), Integer.valueOf(crds[0]), Integer.valueOf(crds[1]), Integer.valueOf(crds[2]));
@@ -2844,7 +2845,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	
 	    	        		    		//new_protection.setFlag(flag, val)
 	    	        		    		
-	    	        		    		java.util.List<String> players = plugin.getSettle().getKeys("Settlements."+settlement_name+".Players");
+	    	        		    		java.util.List<String> players = plugin.getSettle().getStringList("Settlements."+settlement_name+".Players");
 	    	        		        	if (players != null)
 	    	        		    		{
 	    	        		        		int i;
@@ -2907,7 +2908,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        	
 	        	Sign sign = (Sign)block.getState();
 	        	
-	        	List<String> tasks = plugin.getTasks().getKeys("Tasks");
+	        	List<String> tasks = plugin.getTasks().getStringList("Tasks");
 	        	String coords = String.format("%d %d %d", (int)block.getLocation().getX(), (int)block.getLocation().getY(), (int)block.getLocation().getZ());
 	        	
 	        	
@@ -2946,7 +2947,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	        		}
 	        		
 	        		boolean meets_requirements = true;
-	        		List<String> required = plugin.getTasks().getKeys("Tasks."+coords+".Requires");
+	        		List<String> required = plugin.getTasks().getStringList("Tasks."+coords+".Requires");
 	            	if (required != null)
 	            	{
 		        		int i;
@@ -2963,13 +2964,13 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		}
 		        		}
 	            	}
-	        		//plugin.getConfig().setProperty("Tasks."+coords2+".Requires."+type, "Yes");
+	        		//plugin.getConfig().set("Tasks."+coords2+".Requires."+type, "Yes");
 	        		
 	        		
 	        		
 	        		player.sendMessage(ChatColor.YELLOW+"Your task is to " + plugin.getTasks().getString("Tasks."+coords+".goal"));
 
-	        		List<String> equipment = plugin.getTasks().getKeys("Tasks."+coords+".Equipment");
+	        		List<String> equipment = plugin.getTasks().getStringList("Tasks."+coords+".Equipment");
 	            	if (equipment != null)
 	            	{
 		            	int s;
@@ -3010,13 +3011,13 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 	            	String collectnum = plugin.getTasks().getString("Tasks."+coords+".Aims.Collect.Number", "0");
                 	String num = plugin.getTasks().getString("Tasks."+coords+".Aims.Kill.Number", "0");
                 	
-                	plugin.playerConfig(player).setProperty(set+".Kill", num);
-                	plugin.playerConfig(player).setProperty(set+".Collect", collectnum);
-                	plugin.playerConfig(player).setProperty(set+".Started", "Yes");
+                	plugin.playerConfig(player).set(set+".Kill", num);
+                	plugin.playerConfig(player).set(set+".Collect", collectnum);
+                	plugin.playerConfig(player).set(set+".Started", "Yes");
 	        	}
 	        	else
 	        	{
-	        		List<String> shops = plugin.getTasks().getKeys("Shops");
+	        		List<String> shops = plugin.getTasks().getStringList("Shops");
 		        	coords = String.format("%d %d %d", (int)block.getLocation().getX(), (int)block.getLocation().getY(), (int)block.getLocation().getZ());
 		        	
 		        	is_task = false;
@@ -3054,7 +3055,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 		    
 		        			if (player.getInventory().firstEmpty() != -1)
 			        		{
-		        				plugin.playerConfig(p).setProperty("lastMinecart", String.valueOf(current_time));
+		        				plugin.playerConfig(p).set("lastMinecart", String.valueOf(current_time));
 			        			player.sendMessage(ChatColor.YELLOW+"Enjoy your new minecart.");
 
 				        		ItemStack newitems = new ItemStack(328, 1);
@@ -3116,7 +3117,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			    	    	
 			    			if (time_since > 60000)
 			    			{
-			    				plugin.playerConfig(p).setProperty("lastShopping", String.valueOf(current_time));
+			    				plugin.playerConfig(p).set("lastShopping", String.valueOf(current_time));
 			    			}
 			        		else
 			        		{
@@ -3161,11 +3162,11 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		{
 			        			int enterances = plugin.playerConfig(p).getInt("telepadExits", 0);
 			    				enterances++;
-			    				plugin.playerConfig(p).setProperty("telepadExits", enterances);
+			    				plugin.playerConfig(p).set("telepadExits", enterances);
 
 			    				enterances = plugin.playerConfig(p).getInt("telepadEnterances", 0);
 			    				enterances++;
-			    				plugin.playerConfig(p).setProperty("telepadEnterances", enterances);
+			    				plugin.playerConfig(p).set("telepadEnterances", enterances);
 			        		}
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
@@ -3179,7 +3180,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		{
 			        			int enterances = plugin.playerConfig(p).getInt("staminaBoost", 0);
 			    				enterances++;
-			    				plugin.playerConfig(p).setProperty("staminaBoost", enterances);
+			    				plugin.playerConfig(p).set("staminaBoost", enterances);
 			        		}
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
@@ -3196,7 +3197,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			    	    	int staminaBoosts = plugin.playerConfig(event.getPlayer()).getInt("staminaBoost", 0);
 			    			staminaBoosts++;
 			    			int timerID = event.getPlayer().getServer().getScheduler().scheduleSyncRepeatingTask(plugin, sprint, 10*staminaBoosts+boost, 10*staminaBoosts+boost);
-			    			plugin.playerConfig(event.getPlayer()).setProperty( "sprintTimer", timerID);
+			    			plugin.playerConfig(event.getPlayer()).set( "sprintTimer", timerID);
 			    			
 			        	}
 			        	else if (selling.equalsIgnoreCase("Gate"))
@@ -3206,7 +3207,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("gatePerk", "true");
+			        		plugin.playerConfig(p).set("gatePerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now create gates!");
 			        	}
 			        	else if (selling.equalsIgnoreCase("Bridge"))
@@ -3216,7 +3217,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("bridgePerk", "true");
+			        		plugin.playerConfig(p).set("bridgePerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now create bridges!");
 			        	}
 			        	else if (selling.equalsIgnoreCase("Lift"))
@@ -3226,7 +3227,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("liftPerk", "true");
+			        		plugin.playerConfig(p).set("liftPerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now create lifts!");
 			        	}
 			        	else if (selling.equalsIgnoreCase("Music"))
@@ -3239,7 +3240,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("musicPerk", "true");
+			        		plugin.playerConfig(p).set("musicPerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now create music detectors! See the demo for more information on creation!");
 			        	}
 			        	else if (selling.equalsIgnoreCase("WolfDisguise"))
@@ -3248,7 +3249,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("wolfPerk", "true");
+			        		plugin.playerConfig(p).set("wolfPerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now disguise as a wolf! Type /md Wolf to change and /md to change back.");
 			        	}
 			        	else if (selling.equalsIgnoreCase("ZombieDisguise"))
@@ -3257,7 +3258,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("zombiePerk", "true");
+			        		plugin.playerConfig(p).set("zombiePerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now disguise as a Zombie! Type /md Zombie to change and /md to change back.");
 			        	}
 			        	else if (selling.equalsIgnoreCase("SkeletonDisguise"))
@@ -3266,7 +3267,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 			        		player.updateInventory();
 			        		
-			        		plugin.playerConfig(p).setProperty("skeletonPerk", "true");
+			        		plugin.playerConfig(p).set("skeletonPerk", "true");
 			        		player.sendMessage(ChatColor.YELLOW+"You can now disguise as a Skeleton! Type /md Skeleton to change and /md to change back.");
 			        	}
 			        	else if (selling.equalsIgnoreCase("c"))
@@ -3280,7 +3281,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        	else if (plugin.getColors().contains(selling))
 			        	{
 			        		player.sendMessage(ChatColor.YELLOW+"Your name colour has been changed.");
-			        		plugin.playerConfig(p).setProperty("nameColor", plugin.colorFromString(selling).toString());
+			        		plugin.playerConfig(p).set("nameColor", plugin.colorFromString(selling).toString());
 			        			
 			        		removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 				        	player.updateInventory();
@@ -3297,7 +3298,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		if (sneak.equalsIgnoreCase(""))
 			        		{
 			        			player.sendMessage(ChatColor.YELLOW+"You have gained the citadelSpawn perk! Type /citadel to use it.");
-			        			plugin.playerConfig(p).setProperty("citadelSpawn", "true");
+			        			plugin.playerConfig(p).set("citadelSpawn", "true");
 			        			
 			        			removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 				        		player.updateInventory();
@@ -3317,7 +3318,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		if (sneak.equalsIgnoreCase(""))
 			        		{
 			        			player.sendMessage(ChatColor.YELLOW+"You have gained the lightning login perk! Lightning will strike your location when you login.");
-			        			plugin.playerConfig(p).setProperty("lightningLogin", "true");
+			        			plugin.playerConfig(p).set("lightningLogin", "true");
 			        			
 			        			removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 				        		player.updateInventory();
@@ -3337,7 +3338,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		if (sneak.equalsIgnoreCase(""))
 			        		{
 			        			player.sendMessage(ChatColor.YELLOW+"You have gained the sneak perk! Type /sneak to use it.");
-			        			plugin.playerConfig(p).setProperty("sneak", "true");
+			        			plugin.playerConfig(p).set("sneak", "true");
 			        			
 			        			removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 				        		player.updateInventory();
@@ -3356,7 +3357,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 			        		if (since>(60*60*24*1000))
 			        		{
 			        			player.sendMessage(ChatColor.YELLOW+"You have gained an experience boost!");
-			        			plugin.playerConfig(p).setProperty("EXPBOOST", String.valueOf(System.currentTimeMillis()));
+			        			plugin.playerConfig(p).set("EXPBOOST", String.valueOf(System.currentTimeMillis()));
 			        			
 			        			removeInventoryItems(p.getInventory(), Integer.valueOf(buying), Integer.valueOf(bamount));
 				        		player.updateInventory();
@@ -3645,8 +3646,8 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 				 if (player2.equalsIgnoreCase(receive.getName()))
 				 {
 					 //Initialise trade!
-					 plugin.playerConfig(receive).setProperty("LastTrader", "");
-					 plugin.playerConfig(sender).setProperty("LastTrader", "");
+					 plugin.playerConfig(receive).set("LastTrader", "");
+					 plugin.playerConfig(sender).set("LastTrader", "");
 					 
 					 receive.sendMessage(ChatColor.LIGHT_PURPLE+"Initialising gift request...");
 					 sender.sendMessage(ChatColor.LIGHT_PURPLE+"Initialising gift request...");
@@ -3660,11 +3661,11 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 				     
 				     
 				     
-				     plugin.playerConfig(sender).setProperty("TRADELEFT", sender.getName());
-					 plugin.playerConfig(sender).setProperty("TRADERIGHT", receive.getName());
+				     plugin.playerConfig(sender).set("TRADELEFT", sender.getName());
+					 plugin.playerConfig(sender).set("TRADERIGHT", receive.getName());
 				     
-					 plugin.playerConfig(receive).setProperty("TRADELEFT", sender.getName());
-					 plugin.playerConfig(receive).setProperty("TRADERIGHT", receive.getName());
+					 plugin.playerConfig(receive).set("TRADELEFT", sender.getName());
+					 plugin.playerConfig(receive).set("TRADERIGHT", receive.getName());
 				     
 				     
 				     
@@ -3683,7 +3684,7 @@ String houseID = plugin.getSettle().getString(p.getName()+".houseID", "");
 						 sender.sendMessage(ChatColor.RED+receive.getName()+" is already considering your request.");
 					 else
 					 {
-						 plugin.playerConfig(receive).setProperty("LastTrader", sender.getName());
+						 plugin.playerConfig(receive).set("LastTrader", sender.getName());
 						 
 						 receive.sendMessage(ChatColor.LIGHT_PURPLE+sender.getName()+" wants to give you items. Right click them.");
 						 sender.sendMessage(ChatColor.LIGHT_PURPLE+"Sending gift request to "+receive.getName());

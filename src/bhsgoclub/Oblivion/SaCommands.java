@@ -1,6 +1,5 @@
 package bhsgoclub.Oblivion;
 
-import java.io.IOException;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -8,21 +7,19 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
-import org.bukkit.entity.Player;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.block.Block;
 import org.bukkit.block.Sign;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-
+import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
 
 import com.sk89q.worldedit.BlockVector;
-import com.sk89q.worldguard.LocalPlayer;
 import com.sk89q.worldguard.bukkit.WorldGuardPlugin;
 import com.sk89q.worldguard.bukkit.commands.RegionCommands;
 import com.sk89q.worldguard.domains.DefaultDomain;
-import com.sk89q.worldguard.protection.flags.BooleanFlag;
+import com.sk89q.worldguard.protection.databases.ProtectionDatabaseException;
 import com.sk89q.worldguard.protection.flags.DefaultFlag;
 import com.sk89q.worldguard.protection.flags.StateFlag.State;
 import com.sk89q.worldguard.protection.managers.RegionManager;
@@ -117,7 +114,7 @@ public class SaCommands implements CommandExecutor
 		    	}
 		    	else
 		    	{
-		    		java.util.List<String> players2 = plugin.getSettle().getKeys("Settlements."+houseID+".Players");
+		    		java.util.List<String> players2 = plugin.getSettle().getStringList("Settlements."+houseID+".Players");
 		        	if (players2 != null)
 		    		{
 		        		int i;
@@ -346,7 +343,7 @@ public class SaCommands implements CommandExecutor
 										}
 										
 										
-										java.util.List<String> players2 = plugin.getSettle().getKeys("Settlements."+houseID+".Players");
+										java.util.List<String> players2 = plugin.getSettle().getStringList("Settlements."+houseID+".Players");
 			        		        	if (players2 != null)
 			        		    		{
 			        		        		int i;
@@ -443,7 +440,7 @@ public class SaCommands implements CommandExecutor
 											g.sendMessage(ChatColor.YELLOW+"You are no longer a leader of this this settlement!");
 										}
 										
-										java.util.List<String> players2 = plugin.getSettle().getKeys("Settlements."+houseID+".Players");
+										java.util.List<String> players2 = plugin.getSettle().getStringList("Settlements."+houseID+".Players");
 			        		        	if (players2 != null)
 			        		    		{
 			        		        		int i;
@@ -513,7 +510,7 @@ public class SaCommands implements CommandExecutor
 							Player g = getPlayer(player.getWorld(), invited);
 							if (g != null)
 							{
-								List<String> invitations = plugin.getSettle().getKeys(g.getName()+".invitations");
+								List<String> invitations = plugin.getSettle().getStringList(g.getName()+".invitations");
 								if (invitations != null)
 								{
 									int a; boolean contains = false;
@@ -626,7 +623,7 @@ public class SaCommands implements CommandExecutor
 								}
 								
 								
-								java.util.List<String> players2 = plugin.getSettle().getKeys("Settlements."+houseID+".Players");
+								java.util.List<String> players2 = plugin.getSettle().getStringList("Settlements."+houseID+".Players");
 	        		        	if (players2 != null)
 	        		    		{
 	        		        		int i;
@@ -716,7 +713,7 @@ public class SaCommands implements CommandExecutor
 						    		{
 						    			regionManager.removeRegion(the_sign.getLine(2)+"_nopvp");
 						    		}
-						    		java.util.List<String> players = plugin.getSettle().getKeys("Settlements."+the_sign.getLine(2)+".Players");
+						    		java.util.List<String> players = plugin.getSettle().getStringList("Settlements."+the_sign.getLine(2)+".Players");
 						        	if (players != null)
 						    		{
 						        		int i;
@@ -732,13 +729,11 @@ public class SaCommands implements CommandExecutor
 				
 						        	//event.getPlayer().sendMessage(ChatColor.YELLOW+"Settlement deleted.");
 						    		Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+settlement_name+" has been deleted due to lack of members.");
-						    		try 
-    	        		    		{
+						    		try {
 										regionManager.save();
-									}
-    	        		    		catch (IOException e)
-    	        		    		{
-
+									} catch (ProtectionDatabaseException e) {
+										// TODO Auto-generated catch block
+										e.printStackTrace();
 									}
 									
 									//player.sendMessage(ChatColor.RED+"You cannot leave this settlement as it would be destroyed. Consult with the other members of your settlement about breaking the [Settlement] sign.");
@@ -823,7 +818,7 @@ public class SaCommands implements CommandExecutor
 		    		if (split.length > 1)
 					{
 		    			String invited = split[1];
-		    			List<String> invitations = plugin.getSettle().getKeys(player_name+".invitations");
+		    			List<String> invitations = plugin.getSettle().getStringList(player_name+".invitations");
 						
 		    			if (invitations != null)
 						{
@@ -881,7 +876,7 @@ public class SaCommands implements CommandExecutor
 			    	        				
 			    	        				members+=1;
 			    	        				
-			    	        				java.util.List<String> players = plugin.getSettle().getKeys("Settlements."+invited+".Players");
+			    	        				java.util.List<String> players = plugin.getSettle().getStringList("Settlements."+invited+".Players");
 		    	        		        	if (players != null)
 		    	        		    		{
 		    	        		        		int i;
@@ -1086,7 +1081,7 @@ public class SaCommands implements CommandExecutor
 			    	        		    		
 			    	        		    		new_protection_nopvp.setPriority(1000);
 			    	        		    		
-			    	        		    		players = plugin.getSettle().getKeys("Settlements."+invited+".Players");
+			    	        		    		players = plugin.getSettle().getStringList("Settlements."+invited+".Players");
 			    	        		        	if (players != null)
 			    	        		    		{
 			    	        		        		int i;
@@ -1110,13 +1105,11 @@ public class SaCommands implements CommandExecutor
 			    	        		    		regionManager.addRegion(new_protection_nopvp);
 			    	        		    		
 			    	        		    		
-			    	        		    		try 
-			    	        		    		{
+			    	        		    		try {
 													regionManager.save();
-												}
-			    	        		    		catch (IOException e)
-			    	        		    		{
-			
+												} catch (ProtectionDatabaseException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
 												}
 			    	        				}
 			    	        				else
@@ -1315,13 +1308,11 @@ public class SaCommands implements CommandExecutor
 												
 												
 												
-												try 
-			    	        		    		{
+												try {
 													regionManager.save();
-												}
-			    	        		    		catch (IOException e)
-			    	        		    		{
-			
+												} catch (ProtectionDatabaseException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
 												}
 												
 											}
@@ -1357,7 +1348,7 @@ public class SaCommands implements CommandExecutor
 									    				regionManager.removeRegion(the_sign.getLine(2)+"_nopvp");
 									    		}
 									    		
-									    		java.util.List<String> players = plugin.getSettle().getKeys("Settlements."+the_sign.getLine(2)+".Players");
+									    		java.util.List<String> players = plugin.getSettle().getStringList("Settlements."+the_sign.getLine(2)+".Players");
 									        	if (players != null)
 									    		{
 									        		int i;
@@ -1374,13 +1365,11 @@ public class SaCommands implements CommandExecutor
 									        	//event.getPlayer().sendMessage(ChatColor.YELLOW+"Settlement deleted.");
 									    		Bukkit.getServer().broadcastMessage(ChatColor.YELLOW+settlement_name+" has been deleted due to lack of members.");
 
-									    		try 
-			    	        		    		{
+									    		try {
 													regionManager.save();
-												}
-			    	        		    		catch (IOException e)
-			    	        		    		{
-			
+												} catch (ProtectionDatabaseException e) {
+													// TODO Auto-generated catch block
+													e.printStackTrace();
 												}
 												
 												//player.sendMessage(ChatColor.RED+"You cannot leave this settlement as it would be destroyed. Consult with the other members of your settlement about breaking the [Settlement] sign.");

@@ -15,6 +15,8 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Monster;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.configuration.ConfigurationSection;
+import org.bukkit.configuration.file.*;
 
 import bhsgoclub.Oblivion.ConfigUtil;
 
@@ -52,7 +54,7 @@ public class OBLevels implements CommandExecutor {
 				player = getPlayer(player.getWorld(), player_name);
 			}
 
-			List<String> skills = plugin.getStatic().getKeys("Skills");
+			List<String> skills = plugin.getStatic().getStringList("Skills");
 			int g;
 			boolean skilled = false;
 
@@ -166,7 +168,7 @@ public class OBLevels implements CommandExecutor {
 				Player p = getPlayer(player.getWorld(), player_name);
 
 				if (p != null) {
-					List<String> skills = plugin.getStatic().getKeys("Skills");
+					List<String> skills = plugin.getStatic().getStringList("Skills");
 					int g;
 					boolean skilled = false;
 
@@ -1096,7 +1098,7 @@ public class OBLevels implements CommandExecutor {
 			{
 				player.sendMessage(ChatColor.YELLOW+"Current pets:");
 				
-				List<String> pets = plugin.playerConfig(player).getKeys("Pets");
+				List<String> pets = plugin.playerConfig(player).getStringList("Pets");
 				if (pets != null)
 				{
 					for (int i=0; i < pets.size();i++)
@@ -1126,7 +1128,7 @@ public class OBLevels implements CommandExecutor {
 			{
 				String pet_name = split[1];
 				
-				List<String> pets = plugin.playerConfig(player).getKeys("Pets");
+				List<String> pets = plugin.playerConfig(player).getStringList("Pets");
 				if (pets != null)
 				{
 						
@@ -1406,7 +1408,7 @@ public class OBLevels implements CommandExecutor {
 					if (!task_id.equalsIgnoreCase("")) {
 
 						List<String> tasks = plugin.getTasks()
-								.getKeys("Tasks");
+								.getStringList("Tasks");
 						int g;
 						boolean is_task = false;
 
@@ -1471,7 +1473,7 @@ public class OBLevels implements CommandExecutor {
 					if (!task_id.equalsIgnoreCase("")) {
 
 						List<String> tasks = plugin.getTasks()
-								.getKeys("Tasks");
+								.getStringList("Tasks");
 						int g;
 						boolean is_task = false;
 
@@ -1509,7 +1511,7 @@ public class OBLevels implements CommandExecutor {
 					if (!task_id.equalsIgnoreCase("")) {
 
 						List<String> tasks = plugin.getTasks()
-								.getKeys("Tasks");
+								.getStringList("Tasks");
 						int g;
 						boolean is_task = false;
 
@@ -1575,7 +1577,7 @@ public class OBLevels implements CommandExecutor {
 					if (!task_id.equalsIgnoreCase("")) {
 
 						List<String> tasks = plugin.getTasks()
-								.getKeys("Tasks");
+								.getStringList("Tasks");
 						int g;
 						boolean is_task = false;
 
@@ -1621,7 +1623,7 @@ public class OBLevels implements CommandExecutor {
 					if (!task_id.equalsIgnoreCase("")) {
 
 						List<String> tasks = plugin.getTasks()
-								.getKeys("Tasks");
+								.getStringList("Tasks");
 						int g;
 						boolean is_task = false;
 
@@ -1716,7 +1718,7 @@ public class OBLevels implements CommandExecutor {
 					if (!task_id.equalsIgnoreCase("")) {
 
 						List<String> tasks = plugin.getTasks()
-								.getKeys("Tasks");
+								.getStringList("Tasks");
 						int g;
 						boolean is_task = false;
 
